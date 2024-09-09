@@ -1,27 +1,27 @@
 # SEPDotNetCore
 
-C# .Net
+C# .NET
 
 C# Language
-.Net
+.NET
 
 Console App
 Windows Forms
-ASP.Net Core Web API
-ASP.Net Core Web MVC
+ASP.NET Core Web API
+ASP.NET Core Web MVC
 Blazor Web Assembly
 Blazor Web Server
 
-.Net framework(1,2,3,3.5,4,4.5,4.6,4.7,4.8) windows
-.Net Core (1,2,2.2,3,3.1) vs2019 , vs 2022 - windows,linux,macos
-.Net (5 - vs2019 , 6 - vs2022 , 7 , 8 -windows , linux,macos)
+.NET framework (1, 2, 3, 3.5, 4, 4.5, 4.6, 4.7, 4.8) windows
+.NET Core (1, 2, 2.2, 3, 3.1) vs2019, vs2022 - windows, linux, macos
+.NET (5 - vs2019, 6 - vs2022, 7, 8 )- windows, linux, macos
 
 vscode
 visual studio 2022
 
 windows
 
-UI + Business logic + Data Access => DataBase
+UI + Business Logic + Data Access => Database
 
 Kpay
 
@@ -32,35 +32,25 @@ Mobile No Check
 
 SLH => Collin
 
-10000 =>0 
+10000 => 0
 
 -5000 => +5000
 
 Bank + 5000
-SEPDotNetCore
+
+``` sql 
+
+select * from Tbl_Blog 
+
+select * from Tbl_Blog where DeleteFlag=0
 
 
+update Tbl_Blog set BlogTitle ='Unique Title' where BlogId= 1
 
 
-SELECT [BlogId]
-      ,[BlogTitle]
-      ,[BlogAuthor]
-      ,[BlogContent]
-  FROM [dbo].[Tbl_Blog]
+delete from Tbl_Blog where BlogId=3
 
-GO
+update Tbl_Blog set DeleteFlag=0
 
-select * from Tbl_Blog where DeleteFlag = 0
-
-update Tbl_Blog set BlogTitle = 'heehee2' where BlogId = 1
-update Tbl_Blog set DeleteFlag = 1 where BlogId = 2
-
-delete from Tbl_Blog where BlogId = 1
-
-
-
-
-
--- Product Apple 1000, Orange 1000
--- Staff Apple 2, Orange 1
--- 3000, 2000, 1000
+update Tbl_Blog set DeleteFlag=1 where BlogId=5
+```
