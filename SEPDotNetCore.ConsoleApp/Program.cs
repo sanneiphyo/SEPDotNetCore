@@ -27,6 +27,7 @@ Console.WriteLine("Connection string :" + connectionString);
 SqlConnection connection = new SqlConnection(connectionString );
 
 
+
 Console.WriteLine("Connection Opening ...");
 connection.Open();
 Console.WriteLine("Connection Opened.");
