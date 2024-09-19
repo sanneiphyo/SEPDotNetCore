@@ -85,7 +85,7 @@ namespace SEPDotNetCore.ConsoleApp
             //		   )";
 
 
-            string queryinsert = @"
+            string query = @"
                     INSERT INTO [dbo].[Tbl_blog]
                     ([BlogTitle]
                     ,[BlogAuthor]
@@ -99,7 +99,7 @@ namespace SEPDotNetCore.ConsoleApp
                        ,0
 		               )";
 
-            SqlCommand cmd = new SqlCommand(queryinsert, connection);
+            SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@BlogTitle", title);
             cmd.Parameters.AddWithValue("@BlogAuthor", author);
             cmd.Parameters.AddWithValue("@BlogContent", content);
