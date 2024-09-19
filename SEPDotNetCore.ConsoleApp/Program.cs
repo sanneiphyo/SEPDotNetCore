@@ -3,6 +3,7 @@ using SEPDotNetCore.ConsoleApp;
 using System.Data;
 using System.Data.SqlClient;
 
+
 Console.WriteLine("Hello, World!");
 //Console.ReadKey();
 
@@ -17,20 +18,26 @@ Console.WriteLine("Hello, World!");
 
 //Ctrl +.
 
+
+//Dataset = a collection of data (in table)
+//DataTable => dt
+//DataRow => dr
+//DataColums
+
 //max conn = 100 
 //100 =99
 //F9    =>  grate point
 //F10     => 50  [to skip another line]
 //F5
 
-AdoDotNet adoDotNet = new AdoDotNet();
-adoDotNet.Read();
-adoDotNet.Create();
-adoDotNet.Update();
-adoDotNet.Delete();
+//AdoDotNet adoDotNet = new AdoDotNet();
+//adoDotNet.Read();
+//adoDotNet.Create();
+//adoDotNet.Update();
+//adoDotNet.Delete();
 
-//Dataset = a collection of data (in table)
-//DataTable => dt
-//DataRow => dr
-//DataColums
+Dapper dapper = new Dapper();
+dapper.Read();
+
+Console.ReadKey();
 

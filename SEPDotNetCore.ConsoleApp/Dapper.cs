@@ -33,6 +33,31 @@ namespace SEPDotNetCore.ConsoleApp
             //DTO =>data transfer object
 
         }
+
+        public void Create(string title, string author, string conten)
+        {
+
+            string query = @"
+                    INSERT INTO [dbo].[Tbl_blog]
+                    ([BlogTitle]
+                    ,[BlogAuthor]
+                    ,[BlogContent]
+                    ,[DeleteFlag])
+             VALUES
+                    (@BlogTitle
+                    ,@BlogAuthor
+                    ,@BlogContent
+                    ,@DeleteFlag
+                       ,0
+		               )";
+
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                int result = db.Execute(query);
+                Console.WriteLine(result == 1 ? "Saving Successful " : "Saving faileds");
+            }
+        }
     }
+
         
 }
