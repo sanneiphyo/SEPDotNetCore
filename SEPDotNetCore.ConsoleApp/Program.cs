@@ -24,6 +24,10 @@ Console.WriteLine("Hello, World!");
 //F5
 
 AdoDotNet adoDotNet = new AdoDotNet();
+adoDotNet.Read();
+adoDotNet.Create();
+adoDotNet.Update();
+adoDotNet.Delete();
 
 //Dataset = a collection of data (in table)
 //DataTable => dt
