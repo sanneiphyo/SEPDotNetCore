@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +15,7 @@ namespace SEPDotNetCore.ConsoleApp
     {
         private readonly string _connectionString = "Data Source =.;Initial Catalog=SEPDotNetCore;User ID =sa;Password=sasa@123";
 
-        public void Read()
+            public void Read()
         {
 
 
@@ -209,6 +210,15 @@ namespace SEPDotNetCore.ConsoleApp
             Console.WriteLine("Blog Id : ");
             string id = Console.ReadLine();
 
+            Console.WriteLine("Blog Title : ");
+            string title = Console.ReadLine();
+
+
+            Console.WriteLine("Blog Author : ");
+            string author = Console.ReadLine();
+
+            Console.WriteLine("Blog Content : ");
+            string content = Console.ReadLine();
 
             SqlConnection connection = new SqlConnection(_connectionString);
             connection.Open();
@@ -220,6 +230,10 @@ namespace SEPDotNetCore.ConsoleApp
             WHERE BlogId = @BlogId";
             SqlCommand cmd = new SqlCommand(query,connection);
             cmd.Parameters.AddWithValue("@BlogId", id);
+            cmd.Parameters.AddWithValue("@BlogTitle", title);
+            cmd.Parameters.AddWithValue("@BlogAuthor", author);
+            cmd.Parameters.AddWithValue("@BlogContent", content);
+
 
             int result = cmd.ExecuteNonQuery();
             connection.Close();
