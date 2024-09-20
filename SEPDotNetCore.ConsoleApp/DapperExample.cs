@@ -122,6 +122,8 @@ namespace SEPDotNetCore.ConsoleApp
                 var item = db.Query<BlogDataModel>(query, new 
                 { BlogId = Id }).FirstOrDefault(); 
 
+
+                //if(item == null)
                 if (item is null)
                 {
                     Console.WriteLine("No Data Found.");
