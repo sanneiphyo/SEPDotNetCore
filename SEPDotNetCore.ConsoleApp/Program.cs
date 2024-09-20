@@ -30,14 +30,15 @@ Console.WriteLine("Hello, World!");
 //F10     => 50  [to skip another line]
 //F5
 
-//AdoDotNet adoDotNet = new AdoDotNet();
+//AdoDotNetExample adoDotNet = new AdoDotNetExample();
 //adoDotNet.Read();
 //adoDotNet.Create();
 //adoDotNet.Update();
 //adoDotNet.Delete();
 
-Dapper dapper = new Dapper();
+ DapperExample dapper = new DapperExample();
 dapper.Read();
+dapper.Create();
 
 Console.ReadKey();
 
