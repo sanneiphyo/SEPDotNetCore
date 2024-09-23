@@ -54,3 +54,19 @@ update Tbl_Blog set DeleteFlag=0
 
 update Tbl_Blog set DeleteFlag=1 where BlogId=5
 ```
+
+select * from tbl_blog with (no lock)
+
+commit data /umcommit data
+
+insert into
+
+update tbl_blog
+
+1 -  mg mg 1
+2 - mg mg 2
+3- mg mg 3 - mg mg 6
+4 - mg mg -4
+5 - mg mg 5
+
+efcore database first (manual , auto) / codefirst
