@@ -70,3 +70,6 @@ update tbl_blog
 5 - mg mg 5
 
 efcore database first (manual , auto) / codefirst
+
+
+dotnet ef dbcontext scaffold "Server=.;Database=SEPDotNetCore;User Id=sa;Password=sasa@123;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -c AppDbContext -f
