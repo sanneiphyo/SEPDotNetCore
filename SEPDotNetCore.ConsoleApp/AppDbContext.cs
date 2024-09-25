@@ -1,21 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SEPDotNetCore.ConsoleApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SEPDotNetCore.ConsoleApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace SEPDotNetCore.ConsoleApp
 {
-    internal class AppDbContext : DbContext
+    public class AppDbContext : DbContext
     {
-        protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                string connectionString = "Data Source =.;Initial Catalog=SEPDotNetCore;User ID =sa;Password=sasa@123; TrustServerCertificate=True ";
-                optionsBuilder.UseSqlServer();
+                string connectionString = "Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123;TrustServerCertificate=True;";
+                optionsBuilder.UseSqlServer(connectionString);
             }
         }
 
