@@ -21,7 +21,7 @@ namespace SEPDotNetCore.RestApi.Controllers
             return Ok(lst);
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult GetBlogs(int id)
         {
             var item = _db.TblBlogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
