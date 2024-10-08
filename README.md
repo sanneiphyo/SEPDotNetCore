@@ -73,3 +73,41 @@ efcore database first (manual , auto) / codefirst
 
 
 dotnet ef dbcontext scaffold "Server=.;Database=SEPDotNetCore;User Id=sa;Password=sasa@123;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -c AppDbContext -f
+
+------------------------------------------------------------------------------------------------
+
+Visual Studio 2022 installation
+Microsoft SQL Server 2022
+SSMs (Sql server management system)
+
+c# Basic
+SQL Basic
+
+DeleteFlag
+Console App (create project)
+DTO(data transfer object)
+Nuget Package
+ADO.Net
+
+Dapper
+-ORM
+-Data Model
+
+Efcore
+-AppDbContext
+-AsNoTracking
+-Databasefirst
+
+RestApI(ASP.Net Core Web Api)
+- swagger
+- postman
+- http method
+- http status code
+
+
+-------------------------------------------------------------
+
+Backend Api
+
+Data Model (data access , database) 10 columns 
+View Model (Frontend return Data) 2 columns
