@@ -11,9 +11,7 @@ namespace SEPDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogsController : ControllerBase
     {
-        private readonly AppDbContext _db = new AppDbContext();
-      
-
+        private readonly AppDbContext _db = new AppDbContext();   
         [HttpGet]
         public IActionResult GetBlogs()
         {
@@ -51,7 +49,7 @@ namespace SEPDotNetCore.RestApi.Controllers
             {
                 return NotFound();
             }
-            item.BlogTitle = blog.BlogTitle;
+            item.BlogTitle = blog.BlogTitle;                                                                                                                                                          
             item.BlogAuthor = blog.BlogAuthor;
             item.BlogContent = blog.BlogContent;
 
