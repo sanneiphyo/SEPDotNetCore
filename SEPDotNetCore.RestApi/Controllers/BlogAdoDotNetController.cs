@@ -69,7 +69,50 @@ namespace SEPDotNetCore.RestApi.Controllers
             return Ok(lst);
         }
 
-       
+        [HttpGet("{id}")]
+        public IActionResult GetBlog(int id)
+        {
+
+            SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+            string query = @"SELECT [BlogId]
+                                ,[BlogTitle]
+                                ,[BlogAuthor]
+                                ,[BlogContent]
+                                ,[DeleteFlag]
+                            FROM [dbo].[Tbl_Blog] 
+                            WHERE BlogId = @BlogId";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            adapter.Fill(dt);
+
+            if (dt.Rows.Count == 0)
+            {
+                return NotFound();
+
+            }
+            DataRow dr = dt.Rows[0];
+            var item = new BlogViewModel
+            {
+                Id = Convert.ToInt32(dr["BlogId"]),
+                Title = Convert.ToString(dr["BlogTitle"]),
+                Author = Convert.ToString(dr["BlogAuthor"]),
+                Content = Convert.ToString(dr["BlogContent"]),
+                DeleteFlag = Convert.ToBoolean(dr["DeleteFlag"]),
+            };
+            connection.Close();
+
+
+            return Ok(item);
+
+        }
+
+
         [HttpPost]
         public IActionResult CreateBlog(BlogDataModel blog)
         {
@@ -101,7 +144,7 @@ namespace SEPDotNetCore.RestApi.Controllers
             return Ok(result == 1 ? "Saving Successful " : "Saving faileds");
 
         }
-        //need to testing
+      
         [HttpPut("{id}")]
         public IActionResult UpdateBlog(int id,BlogViewModel blog)
         {
