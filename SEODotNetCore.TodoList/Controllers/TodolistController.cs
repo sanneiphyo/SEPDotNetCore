@@ -248,7 +248,7 @@ namespace SEODotNetCore.TodoList.Controllers
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string query = @"DELETE FROM [dbo].[ToDoList] WHERE DeleteFlag = 1 TaskId=@TaskId";
-                int result = db.Execute(query, new TodoListViewModel { Id = id });
+                int result = db.Execute(query, new TodoListViewModel {Id = id });
                 return Ok( result == 1 ?"Deleting Successful" : "Deleting Failed");
             }
         }
