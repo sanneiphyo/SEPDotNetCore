@@ -189,7 +189,7 @@ namespace SEODotNetCore.TodoList.Controllers
             {
                 conditions += " [CategotyId] = @CategotyId ";
             }
-            if (null != Tdl.PriorityLevel)
+            if (0 != Tdl.PriorityLevel)
             {
                 conditions += " [PriorityLevel] = @PriorityLevel ";
             }
