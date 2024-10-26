@@ -16,7 +16,7 @@ namespace SEODotNetCore.TodoList.Controllers
     [ApiController]
     public class TodolistController : ControllerBase
     {
-        private readonly string _connectionString = "DataSource = .; initial Catalog = TDLDotNetCore;User ID = sa; Password = sasa@123; TrustServerCertificate= True";
+        private readonly string _connectionString = "Data Source =.; Initial Catalog = TDLDotNetCore;User ID = sa; Password = sasa@123; TrustServerCertificate= True";
 
         [HttpGet]
         public IActionResult GetToDoList()
@@ -27,7 +27,7 @@ namespace SEODotNetCore.TodoList.Controllers
                     SELECT TaskId as Id
                           ,TaskTitle as Title
                           ,TaskDescription as Description
-                          ,[CategotyId]
+                          ,[CategoryId]
                           ,[PriorityLevel]
                           ,[Status]
                           ,[DueDate]
@@ -53,7 +53,7 @@ namespace SEODotNetCore.TodoList.Controllers
                     SELECT TaskId as Id
                           ,TaskTitle as Title
                           ,TaskDescription as Description
-                          ,[CategotyId]
+                          ,[CategoryId]
                           ,[PriorityLevel]
                           ,[Status]
                           ,[DueDate]
@@ -86,7 +86,7 @@ namespace SEODotNetCore.TodoList.Controllers
             INSERT INTO [dbo].[ToDoList]
                ([TaskTitle]
                ,[TaskDescription]
-               ,[CategotyId]
+               ,[CategoryId]
                ,[PriorityLevel]
                ,[Status]
                ,[DueDate]
@@ -98,7 +98,7 @@ namespace SEODotNetCore.TodoList.Controllers
      VALUES
                (@TaskTitle
                , @TaskDescription
-               , @CategotyId
+               , @CategoryId
                , @PriorityLevel
                , @Status
                , @DueDate
@@ -112,18 +112,19 @@ namespace SEODotNetCore.TodoList.Controllers
             {
                 int result = db.Execute(query, new TodoListDataModel
                 {
-                    TaskId = Tdl.TaskId,
+                   
                     TaskTitle = Tdl.TaskTitle,
                     TaskDescription = Tdl.TaskDescription,
                     CategoryId = Tdl.CategoryId,
                     PriorityLevel = Tdl.PriorityLevel,
                     Status = Tdl.Status,
-                    date = Tdl.date,
+                    DueDate = Tdl.DueDate,
                     CreatedDate = Tdl.CreatedDate,
                     CompletedDate = Tdl.CompletedDate,
                     ForeignKey = Tdl.ForeignKey,
                     TaskCategory = Tdl.TaskCategory
                 });
+
                 return Ok(result == 1 ? " TodoList Successfully Created" : "Creating Failed");
             }
         
@@ -139,7 +140,7 @@ namespace SEODotNetCore.TodoList.Controllers
                     UPDATE [dbo].[ToDoList]
                        SET [TaskTitle] = @Title
                           ,[TaskDescription] = @Description
-                          ,[CategotyId] = @CategotyId
+                          ,[CategoryId] = @CategotyId
                           ,[PriorityLevel] = @PriorityLevel
                           ,[Status] = @Status
                           ,[DueDate] = @DueDate
@@ -157,7 +158,7 @@ namespace SEODotNetCore.TodoList.Controllers
                     CategoryId = Tdl.CategoryId,
                     PriorityLevel = Tdl.PriorityLevel,
                     Status = Tdl.Status,
-                    date = Tdl.date,
+                    DueDate = Tdl.DueDate,
                     CreatedDate = Tdl.CreatedDate,
                     CompletedDate = Tdl.CompletedDate,
                     ForeignKey = Tdl.ForeignKey,
@@ -184,27 +185,27 @@ namespace SEODotNetCore.TodoList.Controllers
             {
                 conditions += " [TaskDescription] = @Description ";
             }
-            //if (!string.IsNullOrEmpty(Tdl.CategoryId))
-            //{
-            //    conditions += " [CategotyId] = @CategotyId ";
-            //}
-            //if (!string.IsNullOrEmpty(Tdl.PriorityLevel))
-            //{
-            //    conditions += " [PriorityLevel] = @PriorityLevel ";
-            //}
+            if (null != Tdl.CategoryId)
+            {
+                conditions += " [CategotyId] = @CategotyId ";
+            }
+            if (null != Tdl.PriorityLevel)
+            {
+                conditions += " [PriorityLevel] = @PriorityLevel ";
+            }
             if (!string.IsNullOrEmpty(Tdl.Status))
             {
                 conditions += " [Status] = @Status, ";
             }
-            if (!string.IsNullOrEmpty(Tdl.date))
+            if (null != Tdl.DueDate)
             {
                 conditions += " [DueDate] = @DueDate, ";
             }
-            if (!string.IsNullOrEmpty(Tdl.CreatedDate))
+            if (null != Tdl.CreatedDate)
             {
                 conditions += " [CreatedDate] = @CreatedDate, ";
             }
-            if (!string.IsNullOrEmpty(Tdl.CompletedDate))
+            if (null != Tdl.CompletedDate)
             {
                 conditions += " [CompletedDate] = @CompletedDate ";
             }
@@ -227,7 +228,7 @@ namespace SEODotNetCore.TodoList.Controllers
                     CategoryId = Tdl.CategoryId,
                     PriorityLevel = Tdl.PriorityLevel,
                     Status = Tdl.Status,
-                    date = Tdl.date,
+                    DueDate = Tdl.DueDate,
                     CreatedDate = Tdl.CreatedDate,
                     CompletedDate = Tdl.CompletedDate,
                     ForeignKey = Tdl.ForeignKey,

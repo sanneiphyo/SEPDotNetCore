@@ -8,13 +8,13 @@
         public string TaskDescription { get; set; }
         public int CategoryId { get; set; }
 
-        public int PriorityLevel { get; set; }
+        public byte  PriorityLevel { get; set; }
         public string Status { get; set; }
 
-        public string date { get; set; }
+        public DateTime DueDate { get; set; }
 
-        public string CreatedDate { get; set; }
-        public string CompletedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime CompletedDate { get; set; }
 
         public int ForeignKey { get; set; }
 
