@@ -185,7 +185,7 @@ namespace SEODotNetCore.TodoList.Controllers
             {
                 conditions += " [TaskDescription] = @Description ";
             }
-            if (null != Tdl.CategoryId)
+            if (0 != Tdl.CategoryId)
             {
                 conditions += " [CategotyId] = @CategotyId ";
             }
