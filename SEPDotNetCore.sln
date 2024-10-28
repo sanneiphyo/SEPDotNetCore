@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.RestApi", "SE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.TodoList", "SEODotNetCore.TodoList\SEPDotNetCore.TodoList.csproj", "{C8717D05-37BD-4029-93F8-A58001CF6D3F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.Shared", "SEPDotNetCore.Shared\SEPDotNetCore.Shared.csproj", "{F311822D-6109-41AE-A21A-098B94AED765}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{C8717D05-37BD-4029-93F8-A58001CF6D3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8717D05-37BD-4029-93F8-A58001CF6D3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8717D05-37BD-4029-93F8-A58001CF6D3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F311822D-6109-41AE-A21A-098B94AED765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F311822D-6109-41AE-A21A-098B94AED765}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F311822D-6109-41AE-A21A-098B94AED765}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F311822D-6109-41AE-A21A-098B94AED765}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
