@@ -47,7 +47,7 @@ namespace SEPDotNetCore.ConsoleApp
            ,0)";
 
 
-            int result = _dapperService.Execute(query, new BlogDataModel
+            int result = _dapperService.Execute(query, new BlogDapperDataModel
             {
                 BlogTitle = title,
                 BlogAuthor = author,
@@ -65,7 +65,7 @@ namespace SEPDotNetCore.ConsoleApp
              ,[DeleteFlag] = 0
             WHERE BlogId = @BlogId";
 
-            int result = _dapperService.Execute(query, new BlogDataModel
+            int result = _dapperService.Execute(query, new BlogDapperDataModel
             {
                 BlogTitle = title,
                 BlogAuthor = author,
@@ -100,7 +100,7 @@ namespace SEPDotNetCore.ConsoleApp
                          SET DeleteFlag = 1 
                          WHERE BlogId = @BlogId";
 
-            int result = _dapperService.Execute(query, new BlogDataModel
+            int result = _dapperService.Execute(query, new BlogDapperDataModel
             {
                 BlogId = Id
 
