@@ -1,22 +1,20 @@
-﻿using Dapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using SEPDotNetCore.Shared;
+using System.Threading.Tasks;
 using SEPDotNetCore.ConsoleApp.Models;
-using System.Data;
 
 namespace SEPDotNetCore.ConsoleApp
 {
-    internal class DapperExample2
+    internal class DapperServiceExample2
     {
         private readonly string _connectionString = "Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123;TrustServerCertificate=True;";
         private readonly DapperService _dapperService;
 
 
-        public DapperExample2()
+        public DapperServiceExample2()
         {
             _dapperService = new DapperService(_connectionString);
         }
@@ -49,7 +47,7 @@ namespace SEPDotNetCore.ConsoleApp
            ,0)";
 
 
-            int result = _dapperService.Execute(query, new BlogDapperDataModel
+            int result = _dapperService.Execute(query, new BlogDataModel
             {
                 BlogTitle = title,
                 BlogAuthor = author,
@@ -67,7 +65,7 @@ namespace SEPDotNetCore.ConsoleApp
              ,[DeleteFlag] = 0
             WHERE BlogId = @BlogId";
 
-            int result = _dapperService.Execute(query, new BlogDapperDataModel
+            int result = _dapperService.Execute(query, new BlogDataModel
             {
                 BlogTitle = title,
                 BlogAuthor = author,
@@ -102,7 +100,7 @@ namespace SEPDotNetCore.ConsoleApp
                          SET DeleteFlag = 1 
                          WHERE BlogId = @BlogId";
 
-            int result = _dapperService.Execute(query, new BlogDapperDataModel
+            int result = _dapperService.Execute(query, new BlogDataModel
             {
                 BlogId = Id
 
