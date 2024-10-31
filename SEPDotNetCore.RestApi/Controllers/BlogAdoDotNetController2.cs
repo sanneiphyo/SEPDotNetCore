@@ -160,7 +160,7 @@ namespace SEPDotNetCore.RestApi.Controllers
             int result = _adoDotNetService.Execute(query,
 
                 new SqlParameterModel("@BlogTitle", id));
-            
+         
 
             if (!string.IsNullOrEmpty(blog.Title))
             {
@@ -175,7 +175,7 @@ namespace SEPDotNetCore.RestApi.Controllers
                 new SqlParameterModel("@BlogContent", blog.Content);
             }
 
-            return Ok(result > 0 ? "Updating Successful." : "Updating Failed.");
+            return Ok(result > 0 ? "Updating Successful." : "Updating Failed...");
         }
         
         
