@@ -53,7 +53,7 @@ namespace SEPDotNetCore.ConsoleApp
                 BlogAuthor = author,
                 BlogContent = content
             });
-            Console.WriteLine(result == 1 ? "Saving Successful " : "Saving faileds");
+            Console.WriteLine(result == 1 ? "Saving Successful " : "Saving failed");
         }
 
         public void Update(string title, string author, string content)
@@ -105,7 +105,7 @@ namespace SEPDotNetCore.ConsoleApp
                 BlogId = Id
 
             });
-            Console.WriteLine(result == 0 ? "Deleteing Blog Failed! " : "Successfully Deleted Blog");
+            Console.WriteLine(result == 0 ? "Deleting Blog Failed! " : "Successfully Deleted Blog");
         }
 
     }
