@@ -1,41 +1,84 @@
-﻿using Dapper;
+﻿
+using SEPDotNetCore.Shared;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using SEPDotNetCore.Shared;
-using SEPDotNetCore.ConsoleApp.Models;
-using System.Data;
 
-namespace SEPDotNetCore.ConsoleApp
+namespace DotNetTrainingBatch5.ConsoleApp
 {
-    internal class DapperExample2
+    internal class AdoDotNetExample2
     {
-        private readonly string _connectionString = "Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123;TrustServerCertificate=True;";
-        private readonly DapperService _dapperService;
+        private readonly string _connectionString = "Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123;";
+        private readonly AdoDotNetService _adoDotNetService;
 
-
-        public DapperExample2()
+        public AdoDotNetExample2()
         {
-            _dapperService = new DapperService(_connectionString);
+            _adoDotNetService = new AdoDotNetService(_connectionString);
         }
 
         public void Read()
         {
-            string query = "select * from tbl_blog where DeleteFlag = 0;";
-            var lst = _dapperService.Query<BlogDapperDataModel>(query).ToList();
-            foreach (var item in lst)
+            string query = @"SELECT [BlogId]
+                                  ,[BlogTitle]
+                                  ,[BlogAuthor]
+                                  ,[BlogContent]
+                                  ,[DeleteFlag]
+                              FROM [dbo].[Tbl_Blog] where DeleteFlag = 0";
+            var dt = _adoDotNetService.Query(query);
+            foreach (DataRow dr in dt.Rows)
             {
-                Console.WriteLine(item.BlogId);
-                Console.WriteLine(item.BlogTitle);
-                Console.WriteLine(item.BlogAuthor);
-                Console.WriteLine(item.BlogContent);
+                Console.WriteLine(dr["BlogId"]);
+                Console.WriteLine(dr["BlogTitle"]);
+                Console.WriteLine(dr["BlogAuthor"]);
+                Console.WriteLine(dr["BlogContent"]);
             }
         }
 
-        public void Create(string title, string author, string content)
+        public void Edit()
         {
+            Console.Write("Blog Id: ");
+            string id = Console.ReadLine()!;
+
+            string query = @"SELECT [BlogId]
+                                  ,[BlogTitle]
+                                  ,[BlogAuthor]
+                                  ,[BlogContent]
+                                  ,[DeleteFlag]
+                              FROM [dbo].[Tbl_Blog] where BlogId = @BlogId";
+
+            //SqlParameterModel[] sqlParameters = new SqlParameterModel[1];
+            //sqlParameters[0] = new SqlParameterModel
+            //{
+            //    Name = "@BlogId",
+            //    Value = id
+            //};
+
+            //var dt = _adoDotNetService.Query(query, sqlParameters);
+
+            var dt = _adoDotNetService.Query(query,
+                new SqlParameterModel("@BlogId", id));
+
+            DataRow dr = dt.Rows[0];
+            Console.WriteLine(dr["BlogId"]);
+            Console.WriteLine(dr["BlogTitle"]);
+            Console.WriteLine(dr["BlogAuthor"]);
+            Console.WriteLine(dr["BlogContent"]);
+        }
+
+        public void Create()
+        {
+            Console.WriteLine("Blog Title: ");
+            string title = Console.ReadLine();
+
+            Console.WriteLine("Blog Author: ");
+            string author = Console.ReadLine();
+
+            Console.WriteLine("Blog Content: ");
+            string content = Console.ReadLine();
 
             string query = $@"INSERT INTO [dbo].[Tbl_Blog]
            ([BlogTitle]
@@ -48,18 +91,31 @@ namespace SEPDotNetCore.ConsoleApp
            ,@BlogContent
            ,0)";
 
+            int result = _adoDotNetService.Execute(query,
+                new SqlParameterModel("@BlogTitle", title),
+                new SqlParameterModel("@BlogAuthor", author),
+                new SqlParameterModel("@BlogContent", content));
 
-            int result = _dapperService.Execute(query, new BlogDapperDataModel
-            {
-                BlogTitle = title,
-                BlogAuthor = author,
-                BlogContent = content
-            });
-            Console.WriteLine(result == 1 ? "Saving Successful " : "Saving faileds");
+            Console.WriteLine(result == 1 ? "Saving Successful." : "Saving Failed.");
         }
 
-        public void Update(string title, string author, string content)
+        public void Update()
         {
+            Console.WriteLine("Blog Id : ");
+            string id = Console.ReadLine();
+
+            Console.WriteLine("Blog Title : ");
+            string title = Console.ReadLine();
+
+
+            Console.WriteLine("Blog Author : ");
+            string author = Console.ReadLine();
+
+            Console.WriteLine("Blog Content : ");
+            string content = Console.ReadLine();
+
+
+
             string query = $@"UPDATE [dbo].[Tbl_Blog]
              SET [BlogTitle] = @BlogTitle
               ,[BlogAuthor] = @BlogAuthor
@@ -67,48 +123,28 @@ namespace SEPDotNetCore.ConsoleApp
              ,[DeleteFlag] = 0
             WHERE BlogId = @BlogId";
 
-            int result = _dapperService.Execute(query, new BlogDapperDataModel
-            {
-                BlogTitle = title,
-                BlogAuthor = author,
-                BlogContent = content
-            });
+            int result = _adoDotNetService.Execute(query,
+                new SqlParameterModel("@BlogId", id),
+                new SqlParameterModel("@BlogTitle", title),
+                new SqlParameterModel("@BlogAuthor", author),
+                new SqlParameterModel("@BlogContent", content));
+          
             Console.WriteLine(result == 1 ? "Updating Successful" : "Updating Failed");
         }
 
-        public void Edit(int Id)
+        public  void Delete()
         {
-            string query = "select * from tbl_blog where DeleteFlag = 0 and BlogId = @BlogId;";
-            var item = _dapperService.QueryFirstOrDefault<BlogDapperDataModel>(query, new BlogDapperDataModel
-            {
-                BlogId = Id
-            });
+            Console.WriteLine("Blog Id: ");
+            string id = Console.ReadLine();
 
-            if (item is null)
-            {
-                Console.WriteLine("No data found.");
-                return;
-            }
+            string query = @"UPDATE [dbo].[Tbl_Blog]
+               SET [DeleteFlag] = 1
+             WHERE BlogId = @id";
 
-            Console.WriteLine(item.BlogId);
-            Console.WriteLine(item.BlogTitle);
-            Console.WriteLine(item.BlogAuthor);
-            Console.WriteLine(item.BlogContent);
-        }
-
-        public void Delete(int Id)
-        {
-            string query = @"UPDATE Tbl_Blog 
-                         SET DeleteFlag = 1 
-                         WHERE BlogId = @BlogId";
-
-            int result = _dapperService.Execute(query, new BlogDapperDataModel
-            {
-                BlogId = Id
-
-            });
+            int result = _adoDotNetService.Execute(query,
+               new SqlParameterModel("@id", id));
+                       
             Console.WriteLine(result == 0 ? "Deleteing Blog Failed! " : "Successfully Deleted Blog");
         }
-
     }
 }
