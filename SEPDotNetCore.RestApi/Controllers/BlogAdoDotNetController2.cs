@@ -130,13 +130,55 @@ namespace SEPDotNetCore.RestApi.Controllers
 
         }
 
-        //still need to finished
         [HttpPatch("{id}")]
         public IActionResult PatchBlog(int id, BlogViewModel blog)
         {
-            return Ok();
-        }
+            string conditions = "";
+            if (!string.IsNullOrEmpty(blog.Title))
+            {
+                conditions += " [BlogTitle] = @BlogTitle, ";
+            }
+            if (!string.IsNullOrEmpty(blog.Author))
+            {
+                conditions += " [BlogAuthor] = @BlogAuthor, ";
+            }
+            if (!string.IsNullOrEmpty(blog.Content))
+            {
+                conditions += " [BlogContent] = @BlogContent, ";
+            }
 
+            if (conditions.Length == 0)
+            {
+                return BadRequest("Invalid Parameters!");
+            }
+
+            conditions = conditions.Substring(0, conditions.Length - 2);
+
+
+            string query = $@"UPDATE [dbo].[Tbl_Blog] SET {conditions} WHERE BlogId = @BlogId";
+
+            int result = _adoDotNetService.Execute(query,
+
+                new SqlParameterModel("@BlogTitle", id));
+            
+
+            if (!string.IsNullOrEmpty(blog.Title))
+            {
+                new SqlParameterModel("@BlogTitle", blog.Title);
+            }
+            if (!string.IsNullOrEmpty(blog.Author))
+            {
+                new SqlParameterModel("@BlogAuthor", blog.Author);
+            }
+            if (!string.IsNullOrEmpty(blog.Content))
+            {
+                new SqlParameterModel("@BlogContent", blog.Content);
+            }
+
+            return Ok(result > 0 ? "Updating Successful." : "Updating Failed.");
+        }
+        
+        
 
 
         [HttpDelete]
