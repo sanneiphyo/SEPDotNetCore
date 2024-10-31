@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SEPDotNetCore.Database\SEPDotNetCore.Database.csproj" />
+    <ProjectReference Include="..\SEPDotNetCore.Shared\SEPDotNetCore.Shared.csproj" />
 	  <PackageReference Include="Dapper" Version="2.1.35" />
   </ItemGroup>
 
