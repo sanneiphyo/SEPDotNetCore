@@ -22,7 +22,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.Shared", "SEP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.MinimalApi", "SEPDotNetCore.MinimalApi\SEPDotNetCore.MinimalApi.csproj", "{97191EBE-EFA0-4766-AE1F-3CCFF8FA1467}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.BirdMinimalApi", "SEPDotNetCore.BirdMinimalApi\SEPDotNetCore.BirdMinimalApi.csproj", "{1D3CC358-7345-40DB-955D-E09D71CA14A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.BirdMinimalApi", "SEPDotNetCore.BirdMinimalApi\SEPDotNetCore.BirdMinimalApi.csproj", "{9E5BB44D-518F-4321-B759-5BA6C52856F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,10 +58,10 @@ Global
 		{97191EBE-EFA0-4766-AE1F-3CCFF8FA1467}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97191EBE-EFA0-4766-AE1F-3CCFF8FA1467}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97191EBE-EFA0-4766-AE1F-3CCFF8FA1467}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D3CC358-7345-40DB-955D-E09D71CA14A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D3CC358-7345-40DB-955D-E09D71CA14A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D3CC358-7345-40DB-955D-E09D71CA14A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D3CC358-7345-40DB-955D-E09D71CA14A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E5BB44D-518F-4321-B759-5BA6C52856F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E5BB44D-518F-4321-B759-5BA6C52856F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E5BB44D-518F-4321-B759-5BA6C52856F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E5BB44D-518F-4321-B759-5BA6C52856F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
