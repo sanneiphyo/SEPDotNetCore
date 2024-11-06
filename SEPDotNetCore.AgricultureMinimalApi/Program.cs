@@ -41,7 +41,7 @@ app.MapGet("/agriculture{id}", (string id) =>
 
 
     return Results.Ok(item);
-})
+})  
 .WithName("GetAgriculture")
 .WithOpenApi();
 
