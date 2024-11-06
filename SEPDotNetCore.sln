@@ -22,7 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.Shared", "SEP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.MinimalApi", "SEPDotNetCore.MinimalApi\SEPDotNetCore.MinimalApi.csproj", "{97191EBE-EFA0-4766-AE1F-3CCFF8FA1467}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.BirdMinimalApi", "SEPDotNetCore.BirdMinimalApi\SEPDotNetCore.BirdMinimalApi.csproj", "{9E5BB44D-518F-4321-B759-5BA6C52856F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.BirdMinimalApi", "SEPDotNetCore.BirdMinimalApi\SEPDotNetCore.BirdMinimalApi.csproj", "{9E5BB44D-518F-4321-B759-5BA6C52856F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.AgricultureMinimalApi", "SEPDotNetCore.AgricultureMinimalApi\SEPDotNetCore.AgricultureMinimalApi.csproj", "{2C850330-04F4-4140-851C-A367B04D550B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,10 @@ Global
 		{9E5BB44D-518F-4321-B759-5BA6C52856F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E5BB44D-518F-4321-B759-5BA6C52856F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E5BB44D-518F-4321-B759-5BA6C52856F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C850330-04F4-4140-851C-A367B04D550B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C850330-04F4-4140-851C-A367B04D550B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C850330-04F4-4140-851C-A367B04D550B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C850330-04F4-4140-851C-A367B04D550B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
