@@ -25,7 +25,24 @@ app.MapGet("/agriculture", () =>
     var result = JsonConvert.DeserializeObject<AgricultureResponseModel>(jsonStr)!;
     return Results.Ok(result.Property1);
 })
-.WithName("GetWeatherForecast")
+.WithName("GetAgricultures")
+.WithOpenApi();
+
+
+app.MapGet("/agriculture{id}", (string id) =>
+{
+    string folderPath = "Data/Burmese.Agriculture";
+    var jsonStr = File.ReadAllText(folderPath);
+    var result = JsonConvert.DeserializeObject<AgricultureResponseModel>(jsonStr)!;
+
+    var item = result.Property1.FirstOrDefault(x => x.Id == id);
+
+    if(item is null)return Results.BadRequest("No data found");
+
+
+    return Results.Ok(item);
+})
+.WithName("GetAgriculture")
 .WithOpenApi();
 
 
