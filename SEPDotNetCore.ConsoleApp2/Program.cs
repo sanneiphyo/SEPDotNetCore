@@ -18,7 +18,7 @@ var blog = new BlogDataModel
     Content = "Test Content"
 };
 
-string jsonStr = blog.ToString();
+string jsonStr = blog.ToJson();
 
 Console.WriteLine(jsonStr);
 Console.ReadLine();
