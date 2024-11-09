@@ -49,62 +49,7 @@ app.MapGet("/agriculture{id}", (string id) =>
 .WithName("GetAgriculture")
 .WithOpenApi();
 
-//not finished
-app.MapPost("/agriculture{id}", (Tbl_Property property) =>
-{
-    string folderPath = "Data/Burmese.Agriculture";
-    var jsonStr = File.ReadAllText(folderPath);
-  
-    var result = new
-    { Property = property,       
-     FileData = JsonConvert.DeserializeObject(jsonStr)
-    };
 
-    return Results.Ok(result);
-})
-.WithName("PostAgriculture")
-.WithOpenApi();
-
-
-app.MapPut ("/agriculture{id}", (string id ,Tbl_Property property) =>
-{
-    string folderPath = "Data/Burmese.Agriculture";
-    var jsonStr = File.ReadAllText(folderPath);
-    var result = JsonConvert.DeserializeObject<AgricultureModel>(jsonStr)!;
-
-    var item = result.Tbl_Property.FirstOrDefault(x => x.Id == id);
-
-    if (item is null)
-    {
-        return Results.BadRequest("No data found.");
-    }
-
-    item.Title = property.Title;
-    item.Date = property.Date;
-    item.Author = property.Author;
-    item.Content = property.Content;
-
-
-    return Results.Ok(item);
-})
-.WithName("DeleteAgriculture")
-.WithOpenApi();
-
-
-//not finished
-app.MapDelete("/agriculture{id}", (string id) =>
-{
-    string folderPath = "Data/Burmese.Agriculture";
-    var jsonStr = File.ReadAllText(folderPath);
-    var result = JsonConvert.DeserializeObject<AgricultureModel>(jsonStr)!;
-
-    var item = result.Tbl_Property.FirstOrDefault(x => x.Id == id);
-
-
-    return Results.Ok(item);
-})
-.WithName("DeleteAgriculture")
-.WithOpenApi();
 
 app.Run();
 
@@ -126,15 +71,3 @@ public class Tbl_Property
 
 
 
-
-public static class Extensions //dev code
-{
-
-    public static string ToJson(this object obj)
-    {
-        string jsonStr = JsonConvert.SerializeObject(obj, Formatting.Indented);
-        return jsonStr;
-
-    }
-
-};
