@@ -44,12 +44,76 @@ app.MapGet("/birds{id}", (int id) =>
 .WithName("GetBird")
 .WithOpenApi();
 
+
+
+
+app.MapPost("/bird", (BirdModel requestModel) =>
+{
+    string folderPath = "Data/Birds.json";
+    var jsonStr = File.ReadAllText(folderPath);
+    var result = JsonConvert.DeserializeObject<BirdResponseModel>(jsonStr)!;
+
+    requestModel.Id = result.Tbl_Bird.Count == 0 ? 1 : result.Tbl_Bird.Max(x => x.Id) + 1;
+    result.Tbl_Bird.Add(requestModel);
+
+    var jsonStrToWrite = JsonConvert.SerializeObject(result);
+    File.WriteAllText(folderPath, jsonStrToWrite);
+   
+    return Results.Ok(requestModel);
+})
+.WithName("CreateBird")
+.WithOpenApi();
+
+
+app.MapPut("/birds{id}", (int id ,BirdModel requestModel) =>
+{
+    string folderPath = "Data/Birds.json";
+    var jsonStr = File.ReadAllText(folderPath);
+    var result = JsonConvert.DeserializeObject<BirdResponseModel>(jsonStr)!;
+
+    var item = result.Tbl_Bird.FirstOrDefault(x => x.Id == id);
+
+    item.Id = requestModel.Id;
+    item.BirdMyanmarName = requestModel.BirdMyanmarName;
+    item.BirdEnglishName = requestModel.BirdEnglishName;
+    item.Description = requestModel.Description;
+    item.ImagePath = requestModel.ImagePath;
+
+    return Results.Ok(item);
+})
+.WithName("UpdateBird")
+.WithOpenApi();
+
+
+app.MapDelete("/birds{id}", (int id, BirdModel requestModel) =>
+{
+    string folderPath = "Data/Birds.json";
+    var jsonStr = File.ReadAllText(folderPath);
+    var result = JsonConvert.DeserializeObject<BirdResponseModel>(jsonStr)!;
+
+    var item = result.Tbl_Bird.FirstOrDefault(x => x.Id == id);
+
+    if (item == null)
+    {
+        return Results.BadRequest("No data found");
+    }
+
+    result.Tbl_Bird.Remove(item);
+
+    var jsonStrToWrite = JsonConvert.SerializeObject(result);
+    File.WriteAllText(folderPath, jsonStrToWrite);
+
+    return Results.Ok(item);
+})
+.WithName("DeleteBird")
+.WithOpenApi();
+
 app.Run();
 
 
 public class BirdResponseModel
 {
-    public BirdModel[] Tbl_Bird { get; set; }
+    public List<BirdModel> Tbl_Bird { get; set; }
 }
 
 public class BirdModel
