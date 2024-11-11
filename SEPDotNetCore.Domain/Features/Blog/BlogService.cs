@@ -71,7 +71,7 @@ namespace SEPDotNetCore.Domain.Features.Blog
             return item;
 
         }
-        public bool DeleteBlog(int id)
+        public bool? DeleteBlog(int id)
         {
             var item = _db.TblBlogs
                 .AsNoTracking()
