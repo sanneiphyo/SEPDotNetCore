@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SEPDotNetCore.Database\SEPDotNetCore.Database.csproj" />
+    <ProjectReference Include="..\SEPDotNetCore.Domain\SEPDotNetCore.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿namespace DotNetTrainingBatch5.MinimalApi.Endpoints.Blog;
+﻿namespace SEPDotNetCore.MinimalApi.Endpoints.Blog;
 
 public static class BlogEndpoint
 {
