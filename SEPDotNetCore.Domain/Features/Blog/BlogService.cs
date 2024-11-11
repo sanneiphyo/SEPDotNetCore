@@ -53,6 +53,24 @@ namespace SEPDotNetCore.Domain.Features.Blog
             return item;
         }
 
+        public TblBlog PatchBlog(int id , TblBlog blog)
+        {
+            var item = _db.TblBlogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
+
+            if (item is null)
+            {
+                return null;
+            }
+            item.BlogTitle = blog.BlogTitle;
+            item.BlogAuthor = blog.BlogAuthor;
+            item.BlogContent = blog.BlogContent;
+
+
+            _db.Entry(item).State = EntityState.Modified;
+            _db.SaveChanges();
+            return item;
+
+        }
         public bool DeleteBlog(int id)
         {
             var item = _db.TblBlogs
