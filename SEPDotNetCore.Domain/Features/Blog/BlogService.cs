@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SEPDotNetCore.Domain.Features.Blog
 {
-    internal class BlogService
+    public class BlogService
     {
         private readonly AppDbContext _db = new AppDbContext();
         public List<TblBlog> GetBlogs()
