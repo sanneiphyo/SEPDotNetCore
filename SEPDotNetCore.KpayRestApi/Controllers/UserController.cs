@@ -27,7 +27,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
         //    using (IDbConnection db = new SqlConnection(_connectionString))j
         //    {
         //        string query = "select * from Tbl_User where DeleteFlag = 0;";
-        //        List<UserDataModel> lst = db.Query<UserDataModel>(query).ToList();
+        //        List<UserDataModel> lst = _dapperService.Query<UserDataModel>(query).ToList();
 
         //        return Ok(lst);
         //    }

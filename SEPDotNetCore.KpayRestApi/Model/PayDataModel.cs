@@ -12,9 +12,10 @@
 
     public class DepositDataModel
     {
-        public int DepositedId { get; set; }
+        public int DepositId { get; set; }
         public string MobileNumber { get; set; }
         public decimal Balance { get; set; }
+        public bool DeleteFlag { get; set; }
     }
 
     public class WithDrawDataModel

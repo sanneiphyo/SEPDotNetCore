@@ -7,5 +7,6 @@ namespace SEPDotNetCore.PayRestApi.Controllers
     [ApiController]
     public class WithDrawController : ControllerBase
     {
+
     }
 }
