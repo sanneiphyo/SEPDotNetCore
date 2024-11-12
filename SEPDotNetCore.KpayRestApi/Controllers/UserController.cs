@@ -24,7 +24,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
         //public IActionResult GetUsers()
         //{
 
-        //    using (IDbConnection db = new SqlConnection(_connectionString))
+        //    using (IDbConnection db = new SqlConnection(_connectionString))j
         //    {
         //        string query = "select * from Tbl_User where DeleteFlag = 0;";
         //        List<UserDataModel> lst = db.Query<UserDataModel>(query).ToList();
