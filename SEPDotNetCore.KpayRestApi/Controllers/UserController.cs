@@ -105,53 +105,53 @@ namespace SEPDotNetCore.PayRestApi.Controllers
             
         }
 
-        [HttpPatch("{id}")]
-        public IActionResult PatchUser(int id , UserDataModel user)
-        {
-            string conditions = "";
-            if (!string.IsNullOrEmpty(user.FullName))
-            {
-                conditions += " [FullName] = @FullName, ";
-            }
-            if (!string.IsNullOrEmpty(user.MobileNumber))
-            {
-                conditions += " [MobileNumber] = @MobileNumber, ";
-            }
-            if (!string.IsNullOrEmpty(user.Pin))
-            {
-                conditions += " [Pin] = @Pin, ";
-            }
+        //[HttpPatch("{id}")]
+        //public IActionResult PatchUser(int id , UserDataModel user)
+        //{
+        //    string conditions = "";
+        //    if (!string.IsNullOrEmpty(user.FullName))
+        //    {
+        //        conditions += " [FullName] = @FullName, ";
+        //    }
+        //    if (!string.IsNullOrEmpty(user.MobileNumber))
+        //    {
+        //        conditions += " [MobileNumber] = @MobileNumber, ";
+        //    }
+        //    if (!string.IsNullOrEmpty(user.Pin))
+        //    {
+        //        conditions += " [Pin] = @Pin, ";
+        //    }
 
-            if (conditions.Length == 0)
-            {
-                return BadRequest("Invalid Parameters!");
-            }
+        //    if (conditions.Length == 0)
+        //    {
+        //        return BadRequest("Invalid Parameters!");
+        //    }
 
-            conditions = conditions.Substring(0, conditions.Length - 2);
-
-
-            string query = $@"UPDATE [dbo].[Tbl_User] SET {conditions} WHERE UserId = @UserId";
-
-            int result = _dapperService.Execute(query,
-
-                new SqlParameterModel("@UserId", id));
+        //    conditions = conditions.Substring(0, conditions.Length - 2);
 
 
-            if (!string.IsNullOrEmpty(user.FullName))
-            {
-                new SqlParameterModel("@FullName", user.FullName);
-            }
-            if (!string.IsNullOrEmpty(user.MobileNumber))
-            {
-                new SqlParameterModel("@MobileNumber",user.MobileNumber);
-            }
-            if (!string.IsNullOrEmpty(user.Pin))
-            {
-                new SqlParameterModel("@Pin", user.Pin);
-            }
+        //    string query = $@"UPDATE [dbo].[Tbl_User] SET {conditions} WHERE UserId = @UserId";
 
-            return Ok(result > 0 ? "Updating Successful." : "Updating Failed...");
-        }
+        //    int result = _dapperService.Execute(query,
+
+        //        new SqlParameterModel("@UserId", id));
+
+
+        //    if (!string.IsNullOrEmpty(user.FullName))
+        //    {
+        //        new SqlParameterModel("@FullName", user.FullName);
+        //    }
+        //    if (!string.IsNullOrEmpty(user.MobileNumber))
+        //    {
+        //        new SqlParameterModel("@MobileNumber",user.MobileNumber);
+        //    }
+        //    if (!string.IsNullOrEmpty(user.Pin))
+        //    {
+        //        new SqlParameterModel("@Pin", user.Pin);
+        //    }
+
+        //    return Ok(result > 0 ? "Updating Successful." : "Updating Failed...");
+        //}
 
 
         [HttpDelete("{id}")]
