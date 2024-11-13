@@ -26,7 +26,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
                 string query = "select * from Tbl_WithDraw   where DeleteFlag = 0;";
-                List<WithDrawDataModel> lst = _dapperService.Query<WithDrawDataModel>(query).ToList();
+                List<WithdrawDataModel> lst = _dapperService.Query<WithdrawDataModel>(query).ToList();
 
                 return Ok(lst);
             }
