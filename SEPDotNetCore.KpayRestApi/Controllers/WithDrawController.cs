@@ -13,7 +13,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
     {
         private readonly string _connectionString = "Data Source =.;Initial Catalog=KPayDotNetCore ;User ID =sa;Password=sasa@123;TrustServerCertificate= True";
         private readonly DapperService _dapperService;
-      
+
         public WithDrawController()
         {
             _dapperService = new DapperService(_connectionString);
@@ -65,10 +65,14 @@ namespace SEPDotNetCore.PayRestApi.Controllers
 
             if (currentBalance is null)
             {
-                return BadRequest("Invalid mobile number. User not found!");
+                return BadRequest("No Data Found");
             }
 
-
+           
+            if (currentBalance.Balance < withdraw.Balance)
+            {
+                return BadRequest("Insufficient balance.");
+            }
             var newBalance = currentBalance.Balance - withdraw.Balance;
 
 

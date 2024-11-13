@@ -65,7 +65,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
 
             if (currentBalance is null)
             {
-                return BadRequest("Invalid mobile number. User not found!");
+                return BadRequest("No Data Found");
             }
 
 
