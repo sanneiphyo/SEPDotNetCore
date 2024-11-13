@@ -21,7 +21,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
 
 
         [HttpGet]
-        public IActionResult GetUsers()
+        public IActionResult GetDeposits()
         {
 
              string query = "select * from Tbl_Deposit   where DeleteFlag = 0;";
@@ -33,7 +33,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetUser(int id)
+        public IActionResult GetDeposit(int id)
         {
 
             string query = "select * from Tbl_Deposit  WHERE DeleteFlag = 0 AND DepositId=@Id";
@@ -53,31 +53,38 @@ namespace SEPDotNetCore.PayRestApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateUser(DepositDataModel deposit)
+        public IActionResult CreateDeposit(DepositDataModel deposit)
         {
-             string query = $@"INSERT INTO [dbo].[Tbl_Deposit]
-                   ([MobileNumber]
-                   ,[Balance]
-                   ,[DeleteFlag])
-             VALUES
-                   (@MobileNumber
-                   ,@Balance
-                   ,0)";
 
-                int result = _dapperService.Execute(query, new DepositDataModel
-                {
-                    MobileNumber = deposit.MobileNumber,
-                    Balance = deposit.Balance,
+            string getBalanceQuery = "SELECT Balance FROM Tbl_User WHERE MobileNumber = @MobileNumber AND DeleteFlag = 0";
+            var currentBalance = _dapperService.Query<DepositDataModel>(getBalanceQuery, new DepositDataModel
+            {
+                MobileNumber = deposit.MobileNumber
+
+            }).FirstOrDefault();
+
+            if (currentBalance is null)
+            {
+                return BadRequest("Invalid mobile number. User not found!");
+            }
+
+
+            var newBalance = currentBalance.Balance + deposit.Balance;
+
+
+            string updateBalanceQuery = "UPDATE Tbl_User SET Balance = @NewBalance WHERE MobileNumber = @MobileNumber AND DeleteFlag = 0";
+            int updateResult = _dapperService.Execute(updateBalanceQuery, new DepositDataModel
+            {
+                Balance = newBalance,
+                MobileNumber = deposit.MobileNumber
+            });
+
+            if (updateResult == 0)
+            {
+                return NotFound("No Data Found");
                   
-                });
-                return Ok(result == 1 ? "Creating Deposit SuccessFully" : " Deposit Failed");
-           
-               
-        }
+            }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateUser(int id, DepositDataModel deposit)
-        {
             string query = $@"
             UPDATE [dbo].[Tbl_Deposit]
                SET [MobileNumber] = @MobileNumber
@@ -85,25 +92,14 @@ namespace SEPDotNetCore.PayRestApi.Controllers
                   ,[DeleteFlag] = 0
              WHERE DepositId = @Id";
 
-            int result = _dapperService.Execute(query, new DepositDataModel
+            int insertResult = _dapperService.Execute(query, new DepositDataModel
             {
-             
                 MobileNumber = deposit.MobileNumber,
-                Balance = deposit.Balance,
+                Balance = deposit.Balance
             });
 
-            return Ok(result == 1 ? "Updating Successful." : "Updating Fail");
-
-        }
-
-
-        [HttpDelete("{id}")]
-        public IActionResult DeleteUser(int id)
-        {
-            string query = "UPDATE [dbo].[Tbl_Deposit] SET DeleteFlag = 1 WHERE DepositId = @DepositId";
-            int result = _dapperService.Execute(query, new DepositDataModel { DepositId = id });
-
-            return Ok(result == 0 ? "Failed Deleting Deposit!" : "Successfully Deleted Deposit");
+            return Ok(insertResult == 0 ? "Deposit is not completed" : "Deposit completed successfully.");
+           
         }
 
     }

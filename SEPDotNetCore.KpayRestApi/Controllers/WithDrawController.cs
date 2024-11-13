@@ -56,48 +56,53 @@ namespace SEPDotNetCore.PayRestApi.Controllers
         [HttpPost]
         public IActionResult CreateWithDraw(WithDrawDataModel withdraw)
         {
-            using (IDbConnection db = new SqlConnection())
+            string getBalanceQuery = "SELECT Balance FROM Tbl_User WHERE MobileNumber = @MobileNumber AND DeleteFlag = 0";
+            var currentBalance = _dapperService.Query<WithDrawDataModel>(getBalanceQuery, new WithDrawDataModel
             {
-                string query = $@"INSERT INTO [dbo].[Tbl_WithDraw]
-                   ([MobileNumber]
-                   ,[Balance]
-                   ,[DeleteFlag])
-             VALUES
-                   (@MobileNumber
-                   ,@Balance
-                   ,0)";
+                MobileNumber = withdraw.MobileNumber
 
-                int result = _dapperService.Execute(query, new DepositDataModel
-                {
-                    MobileNumber = withdraw.MobileNumber,
-                    Balance = withdraw.Balance,
+            }).FirstOrDefault();
 
-                });
-                return Ok(result == 1 ? "WithDraw SuccessFully Created" : "WithDraw  Failed");
+            if (currentBalance is null)
+            {
+                return BadRequest("Invalid mobile number. User not found!");
             }
 
-        }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateUser(int id, WithDrawDataModel withdraw)
-        {
+            var newBalance = currentBalance.Balance - withdraw.Balance;
+
+
+            string updateBalanceQuery = "UPDATE Tbl_User SET Balance = @NewBalance WHERE MobileNumber = @MobileNumber AND DeleteFlag = 0";
+            int updateResult = _dapperService.Execute(updateBalanceQuery, new DepositDataModel
+            {
+                Balance = newBalance,
+                MobileNumber = withdraw.MobileNumber
+            });
+
+            if (updateResult == 0)
+            {
+                return NotFound("No Data Found");
+
+            }
+
             string query = $@"
-            UPDATE [dbo].[Tbl_WithDraw]
+            UPDATE [dbo].[Tbl_Deposit]
                SET [MobileNumber] = @MobileNumber
                   ,[Balance] = @Balance
                   ,[DeleteFlag] = 0
              WHERE DepositId = @Id";
 
-            int result = _dapperService.Execute(query, new WithDrawDataModel
+            int insertResult = _dapperService.Execute(query, new WithDrawDataModel
             {
-
                 MobileNumber = withdraw.MobileNumber,
-                Balance = withdraw.Balance,
+                Balance = withdraw.Balance
             });
 
-            return Ok(result == 1 ? "Updating Successful." : "Updating Fail");
+            return Ok(insertResult == 0 ? "Deposit is not completed" : "Deposit completed successfully.");
 
         }
+
+
 
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
