@@ -24,13 +24,11 @@ namespace SEPDotNetCore.PayRestApi.Controllers
         public IActionResult GetUsers()
         {
 
-            using (IDbConnection db = new SqlConnection(_connectionString)) 
-            {
-                string query = "select * from Tbl_Deposit   where DeleteFlag = 0;";
+             string query = "select * from Tbl_Deposit   where DeleteFlag = 0;";
                 List<DepositDataModel> lst = _dapperService.Query<DepositDataModel>(query).ToList();
 
                 return Ok(lst);
-            }
+            
 
         }
 
@@ -57,9 +55,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
         [HttpPost]
         public IActionResult CreateUser(DepositDataModel deposit)
         {
-            using (IDbConnection db = new SqlConnection())
-            {
-                string query = $@"INSERT INTO [dbo].[Tbl_Deposit]
+             string query = $@"INSERT INTO [dbo].[Tbl_Deposit]
                    ([MobileNumber]
                    ,[Balance]
                    ,[DeleteFlag])
@@ -74,8 +70,8 @@ namespace SEPDotNetCore.PayRestApi.Controllers
                     Balance = deposit.Balance,
                   
                 });
-                return Ok(result == 1 ? "Creating User SuccessFully" : " Creating User Failed");
-            }
+                return Ok(result == 1 ? "Creating Deposit SuccessFully" : " Deposit Failed");
+           
                
         }
 
@@ -107,7 +103,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
             string query = "UPDATE [dbo].[Tbl_Deposit] SET DeleteFlag = 1 WHERE DepositId = @DepositId";
             int result = _dapperService.Execute(query, new DepositDataModel { DepositId = id });
 
-            return Ok(result == 0 ? "Failed Deleting User Account!" : "Successfully Deleted User");
+            return Ok(result == 0 ? "Failed Deleting Deposit!" : "Successfully Deleted Deposit");
         }
 
     }

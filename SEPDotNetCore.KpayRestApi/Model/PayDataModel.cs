@@ -23,6 +23,7 @@
         public int WithDrawId { get; set; }
         public string MobileNumber { get; set; }
         public decimal Balance { get; set; }
+        public bool DeleteFlag { get; set; }
     }
 
     public class TransferDataModel
