@@ -94,7 +94,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
                SET [MobileNumber] = @MobileNumber
                   ,[Balance] = @Balance
                   ,[DeleteFlag] = 0
-             WHERE DepositId = @Id";
+             WHERE WithdrawId = @Id";
 
             int insertResult = _dapperService.Execute(query, new WithdrawDataModel
             {
