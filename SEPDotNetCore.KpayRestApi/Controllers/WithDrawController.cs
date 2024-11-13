@@ -20,7 +20,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetWithDraws()
+        public IActionResult GetWithdraws()
         {
 
             using (IDbConnection db = new SqlConnection(_connectionString))
@@ -34,13 +34,13 @@ namespace SEPDotNetCore.PayRestApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetWithDraw(int id)
+        public IActionResult GetWithdraw(int id)
         {
 
             string query = "select * from Tbl_WithDraw  WHERE DeleteFlag = 0 AND WithDrawId=@Id";
-            var item = _dapperService.Query<WithDrawDataModel>(query, new WithDrawDataModel
+            var item = _dapperService.Query<WithdrawDataModel>(query, new WithdrawDataModel
             {
-                WithDrawId = id
+                WithdrawId = id
 
             }).FirstOrDefault();
 
@@ -54,10 +54,10 @@ namespace SEPDotNetCore.PayRestApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateWithDraw(WithDrawDataModel withdraw)
+        public IActionResult CreateWithdraw(WithdrawDataModel withdraw)
         {
             string getBalanceQuery = "SELECT Balance FROM Tbl_User WHERE MobileNumber = @MobileNumber AND DeleteFlag = 0";
-            var currentBalance = _dapperService.Query<WithDrawDataModel>(getBalanceQuery, new WithDrawDataModel
+            var currentBalance = _dapperService.Query<WithdrawDataModel>(getBalanceQuery, new WithdrawDataModel
             {
                 MobileNumber = withdraw.MobileNumber
 
@@ -77,7 +77,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
 
 
             string updateBalanceQuery = "UPDATE Tbl_User SET Balance = @NewBalance WHERE MobileNumber = @MobileNumber AND DeleteFlag = 0";
-            int updateResult = _dapperService.Execute(updateBalanceQuery, new DepositDataModel
+            int updateResult = _dapperService.Execute(updateBalanceQuery, new WithdrawDataModel
             {
                 Balance = newBalance,
                 MobileNumber = withdraw.MobileNumber
@@ -96,7 +96,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
                   ,[DeleteFlag] = 0
              WHERE DepositId = @Id";
 
-            int insertResult = _dapperService.Execute(query, new WithDrawDataModel
+            int insertResult = _dapperService.Execute(query, new WithdrawDataModel
             {
                 MobileNumber = withdraw.MobileNumber,
                 Balance = withdraw.Balance
@@ -112,7 +112,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
         public IActionResult DeleteUser(int id)
         {
             string query = "UPDATE [dbo].[Tbl_Deposit] SET DeleteFlag = 1 WHERE WithDrawId = @WithDrawId";
-            int result = _dapperService.Execute(query, new WithDrawDataModel { WithDrawId = id });
+            int result = _dapperService.Execute(query, new WithdrawDataModel { WithdrawId = id });
 
             return Ok(result == 0 ? "Failed Deleting Deposit!" : "Successfully Deleted Deposit");
         }

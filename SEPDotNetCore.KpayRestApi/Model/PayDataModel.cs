@@ -18,9 +18,9 @@
         public bool DeleteFlag { get; set; }
     }
 
-    public class WithDrawDataModel
+    public class WithdrawDataModel
     {
-        public int WithDrawId { get; set; }
+        public int WithdrawId { get; set; }
         public string MobileNumber { get; set; }
         public decimal Balance { get; set; }
         public bool DeleteFlag { get; set; }
