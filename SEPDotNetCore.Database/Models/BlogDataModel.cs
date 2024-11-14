@@ -1,6 +1,6 @@
 ﻿namespace SEPDotNetCore.ConsoleApp
 {
-    public class BlogDataModel
+    public class POSDataModel
     {
     }
 }

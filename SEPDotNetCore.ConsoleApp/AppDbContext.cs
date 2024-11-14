@@ -9,7 +9,7 @@ namespace SEPDotNetCore.ConsoleApp
         {
             if (!optionsBuilder.IsConfigured)
             {
-                string connectionString = "Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123;TrustServerCertificate=True;";
+                string connectionString = "Data Source=.;Initial Catalog=SEPDotNetCore;User ID=sa;Password=sasa@123;TrustServerCertificate=True;";
                 optionsBuilder.UseSqlServer(connectionString);
             }
         }
