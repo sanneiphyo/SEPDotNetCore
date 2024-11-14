@@ -137,7 +137,7 @@ namespace SEPDotNetCore.POS.Model
         public class PaymentDataModel
         {
             [Key]
-            public int PaymenId { get; set; }
+            public int PaymentId { get; set; }
             public string Amount { get; set; }
             public string PaymentMethod { get; set; }
             public bool DeleteFlag { get; set; }

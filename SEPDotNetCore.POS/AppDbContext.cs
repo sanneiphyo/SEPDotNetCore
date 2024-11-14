@@ -10,7 +10,7 @@ namespace SEPDotNetCore.POS
             {
                 if (!optionsBuilder.IsConfigured)
                 {
-                    string connectionString = "Data Source=.;Initial Catalog=SEPDotNetCore;User ID=sa;Password=sasa@123;TrustServerCertificate=True;";
+                    string connectionString = "Data Source=.;Initial Catalog=POSDotNetCore;User ID=sa;Password=sasa@123;TrustServerCertificate=True;";
                     optionsBuilder.UseSqlServer(connectionString);
                 }
             }
@@ -24,5 +24,8 @@ namespace SEPDotNetCore.POS
             public DbSet<SaleInvoiceDetailDataModel> SaleInvoiceDetailDataModel { get; set; }
             public DbSet<CustomerDataModel> CustomerDataModel { get; set; }
             public DbSet<SupplierDataModel> SupplierDataModel { get; set; }
+            public DbSet<InventoryDataModel> InventoryDataModel { get; set; }
+            public DbSet<PaymentDataModel> PaymentDataModel { get; set; }
+            public DbSet<ExpenseDataModel> ExpenseDataModel { get; set; }
     }
 }
