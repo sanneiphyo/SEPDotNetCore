@@ -28,7 +28,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.AgricultureMi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.Domain", "SEPDotNetCore.Domain\SEPDotNetCore.Domain.csproj", "{F9355AB4-57AA-4CC3-A248-96FD5C8FCB03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.PayRestApi", "SEPDotNetCore.KpayRestApi\SEPDotNetCore.PayRestApi.csproj", "{748EB56E-456D-4C60-B8A1-E234826B78A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.PayRestApi", "SEPDotNetCore.KpayRestApi\SEPDotNetCore.PayRestApi.csproj", "{748EB56E-456D-4C60-B8A1-E234826B78A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.POS", "SEPDotNetCore.POS\SEPDotNetCore.POS.csproj", "{32428A5D-4CE0-411B-982A-796035C0E565}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +82,10 @@ Global
 		{748EB56E-456D-4C60-B8A1-E234826B78A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{748EB56E-456D-4C60-B8A1-E234826B78A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{748EB56E-456D-4C60-B8A1-E234826B78A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32428A5D-4CE0-411B-982A-796035C0E565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32428A5D-4CE0-411B-982A-796035C0E565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32428A5D-4CE0-411B-982A-796035C0E565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32428A5D-4CE0-411B-982A-796035C0E565}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
