@@ -56,7 +56,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
         [HttpPost]
         public IActionResult CreateUser(UserDataModel user)
         {
-            using(IDbConnection db = new SqlConnection())
+            using(IDbConnection db = new SqlConnection(_connectionString))
             {
                 string query = $@"INSERT INTO [dbo].[Tbl_User]
                    ([FullName]
@@ -64,7 +64,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
                    ,[Balance]
                    ,[pin]
                    ,[DeleteFlag])
-             VALUES
+             VALUES0
                    (@FullName
                    ,@MobileNumber
                    ,@Balance
@@ -96,6 +96,7 @@ namespace SEPDotNetCore.PayRestApi.Controllers
 
                 int result = _dapperService.Execute(query , new UserDataModel
                 {
+                    UserId =user.UserId,
                     FullName = user.FullName,
                     MobileNumber = user.MobileNumber,
                     Pin = user.Pin,
