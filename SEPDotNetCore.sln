@@ -32,6 +32,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.POS", "SEPDot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotBetCore.DigitalWalletDatabase", "SEPDotBetCore.DigitalWalletDatabase\SEPDotBetCore.DigitalWalletDatabase.csproj", "{EE6357A9-9BA4-486C-9911-CAA5EAE601C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.MiniKpay.Domain", "SEPDotNetCore.DigitalWalletADomain\SEPDotNetCore.MiniKpay.Domain.csproj", "{7555D749-0BCE-4EA8-AB44-BB681267D18B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.MiniKpay.Api", "SEPDotNetCore.DigitalWalletRestApi\SEPDotNetCore.MiniKpay.Api.csproj", "{98663D53-E33F-404E-8656-115147C2AAA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +90,14 @@ Global
 		{EE6357A9-9BA4-486C-9911-CAA5EAE601C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE6357A9-9BA4-486C-9911-CAA5EAE601C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE6357A9-9BA4-486C-9911-CAA5EAE601C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7555D749-0BCE-4EA8-AB44-BB681267D18B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7555D749-0BCE-4EA8-AB44-BB681267D18B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7555D749-0BCE-4EA8-AB44-BB681267D18B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7555D749-0BCE-4EA8-AB44-BB681267D18B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98663D53-E33F-404E-8656-115147C2AAA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98663D53-E33F-404E-8656-115147C2AAA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98663D53-E33F-404E-8656-115147C2AAA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98663D53-E33F-404E-8656-115147C2AAA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace SEPDotBetCore.DigitalWalletDatabase.AppDbContextModels
+namespace SEPDotNetCore.MiniKpay.Domain.Models
 {
-   public class TblWalletUser
+    public class TblWalletUser
 
     {
         public int UserId {  get; set; }
