@@ -28,11 +28,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.Domain", "SEP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.POS", "SEPDotNetCore.POS\SEPDotNetCore.POS.csproj", "{32428A5D-4CE0-411B-982A-796035C0E565}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotBetCore.DigitalWalletDatabase", "SEPDotBetCore.DigitalWalletDatabase\SEPDotBetCore.DigitalWalletDatabase.csproj", "{EE6357A9-9BA4-486C-9911-CAA5EAE601C6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.MiniKpay.DataBase", "SepDotNetCore.MiniKpay.DataBase\SEPDotNetCore.MiniKpay.DataBase.csproj", "{E5979668-0DF9-4B46-A753-92F948075DA8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.MiniKpay.Domain", "SEPDotNetCore.MiniKpay.Domain\SEPDotNetCore.MiniKpay.Domain.csproj", "{BEF01D3E-EC1A-4810-8426-E94395867718}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.MiniKpay.Api", "SEPDotNetCore.MiniKpay.Api\SEPDotNetCore.MiniKpay.Api.csproj", "{F2859810-C300-4A82-8FF7-37C7C619E9ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,10 +80,6 @@ Global
 		{32428A5D-4CE0-411B-982A-796035C0E565}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32428A5D-4CE0-411B-982A-796035C0E565}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32428A5D-4CE0-411B-982A-796035C0E565}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE6357A9-9BA4-486C-9911-CAA5EAE601C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE6357A9-9BA4-486C-9911-CAA5EAE601C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE6357A9-9BA4-486C-9911-CAA5EAE601C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE6357A9-9BA4-486C-9911-CAA5EAE601C6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E5979668-0DF9-4B46-A753-92F948075DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E5979668-0DF9-4B46-A753-92F948075DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5979668-0DF9-4B46-A753-92F948075DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -92,6 +88,10 @@ Global
 		{BEF01D3E-EC1A-4810-8426-E94395867718}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEF01D3E-EC1A-4810-8426-E94395867718}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEF01D3E-EC1A-4810-8426-E94395867718}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2859810-C300-4A82-8FF7-37C7C619E9ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2859810-C300-4A82-8FF7-37C7C619E9ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2859810-C300-4A82-8FF7-37C7C619E9ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2859810-C300-4A82-8FF7-37C7C619E9ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

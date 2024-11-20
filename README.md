@@ -72,10 +72,14 @@ update tbl_blog
 efcore database first (manual , auto) / codefirst
 
 
+prereq:
+dotnet tool install --global dotnet-ef
+
+
 dotnet ef dbcontext scaffold "Server=.;Database=SEPDotNetCore;User Id=sa;Password=sasa@123;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -c AppDbContext -f
 
-
 dotnet ef dbcontext scaffold "Server=.;Database=DigitalWallet;User Id=sa;Password=sasa@123;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o AppDbContextModels -c AppDbContext -f
+
 
 ------------------------------------------------------------------------------------------------
 
