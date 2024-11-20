@@ -66,13 +66,16 @@ update tbl_blog
 1 -  mg mg 1
 2 - mg mg 2
 3- mg mg 3 - mg mg 6
-4 - mg mg -4
+4 - mg mg -4dotnet ef dbcontext scaffold "Server=.;Database=DigitalWallet;User Id=sa;Password=sasa@123;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o AppDbContextModels -c AppDbContext -f
 5 - mg mg 5
 
 efcore database first (manual , auto) / codefirst
 
 
 dotnet ef dbcontext scaffold "Server=.;Database=SEPDotNetCore;User Id=sa;Password=sasa@123;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o Models -c AppDbContext -f
+
+
+dotnet ef dbcontext scaffold "Server=.;Database=DigitalWallet;User Id=sa;Password=sasa@123;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o AppDbContextModels -c AppDbContext -f
 
 ------------------------------------------------------------------------------------------------
 
