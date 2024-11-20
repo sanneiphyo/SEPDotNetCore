@@ -15,7 +15,7 @@ namespace SEPDotNetCore.MiniKpay.Domain.Features.WalletUser
     {
         private readonly string _connectionString = "Data Source=.;Initial Catalog=DigitalWallet;User ID=sa;Password=sasa@123;TrustServerCertificate=True;";
 
-        public async Task<TblWalletUser> Register(TblWalletUser newUser)
+        public  Task<TblWalletUser> Register(TblWalletUser newUser)
         {
             string query = $@" INSERT INTO[dbo].[TblWalletUser]
                 ([MobileNumber]
@@ -31,7 +31,7 @@ namespace SEPDotNetCore.MiniKpay.Domain.Features.WalletUser
             {
                 ValidateUser(newUser);
 
-                var result = await db.ExecuteAsync(query, new TblWalletUser
+                var result =  db.ExecuteAsync(query, new TblWalletUser
                 {
                     MobileNumber = newUser.MobileNumber,
                     UserName = newUser.UserName,
@@ -39,32 +39,24 @@ namespace SEPDotNetCore.MiniKpay.Domain.Features.WalletUser
                     Balance = newUser.Balance,
                 });
 
-                if (result > 0)
-                {
-                    return newUser;
-                }
-                else
-                {
-                    throw new Exception("User registration failed.");
-                }
+             
             }
         }
 
-        //public async Task<TblWalletUser?> GetUser(int id)
-        //{
-        //    string query = "select * from TblWalletUser WHERE UserId = @UserId";
+        public  Task<TblWalletUser?> GetUser(int id)
+        {
+            string query = "select * from TblWalletUser WHERE UserId = @UserId";
 
-        //    using (IDbConnection db = new SqlConnection(_connectionString))
-        //    {
-        //        var item = await db.QueryAsync<TblWalletUser>(query, new TblWalletUser
-                
-        //        {
-        //            UserId = id
-        //        }).FirstOrDefault();
+            using (IDbConnection db = new SqlConnection(_connectionString))
+            {
+                var item =  db.Query<TblWalletUser>(query, new TblWalletUser
 
-        //        return item.FirstOrDefault();
-        //    }
-        //}
+                {
+                    UserId = id
+                }).FirstOrDefault();
+
+            }
+        }
 
 
 

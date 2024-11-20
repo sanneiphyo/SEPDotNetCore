@@ -11,8 +11,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\SEPDotNetCore.DigitalWalletADomain\SEPDotNetCore.MiniKpay.Domain.csproj" />
-  </ItemGroup>
-
 </Project>

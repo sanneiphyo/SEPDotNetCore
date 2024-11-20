@@ -9,9 +9,9 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints.WalletUser
     [ApiController]
     public class WalletUserController : ControllerBase
     {
-        private readonly WallerUserService _service;
+        private readonly WalletUserService _service;
 
-        public WalletUserController(WallerUserService service)
+        public WalletUserController(WalletUserService service)
         {
             _service = service;
         }
@@ -20,14 +20,25 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints.WalletUser
         {
             try
             {
-                var user = await  _service.Register(newUser);
+                var user = await _service.Register(newUser);
+                return CreatedAtAction(nameof(GetUser), new { id = user.UserId }, user);
             }
-            catch 
+            catch (ArgumentException ex)
             {
-              
+                return BadRequest(new { message = ex.Message });
             }
-               
-        
-        }    
- }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUser(int id)
+        {
+            var user = await _service.GetUserAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+    }
 }

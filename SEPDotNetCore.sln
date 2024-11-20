@@ -20,8 +20,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.TodoList", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.Shared", "SEPDotNetCore.Shared\SEPDotNetCore.Shared.csproj", "{F311822D-6109-41AE-A21A-098B94AED765}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.MinimalApi", "SEPDotNetCore.MinimalApi\SEPDotNetCore.MinimalApi.csproj", "{97191EBE-EFA0-4766-AE1F-3CCFF8FA1467}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.BirdMinimalApi", "SEPDotNetCore.BirdMinimalApi\SEPDotNetCore.BirdMinimalApi.csproj", "{9E5BB44D-518F-4321-B759-5BA6C52856F1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.AgricultureMinimalApi", "SEPDotNetCore.AgricultureMinimalApi\SEPDotNetCore.AgricultureMinimalApi.csproj", "{2C850330-04F4-4140-851C-A367B04D550B}"
@@ -31,10 +29,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SEPDotNetCore.POS", "SEPDotNetCore.POS\SEPDotNetCore.POS.csproj", "{32428A5D-4CE0-411B-982A-796035C0E565}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotBetCore.DigitalWalletDatabase", "SEPDotBetCore.DigitalWalletDatabase\SEPDotBetCore.DigitalWalletDatabase.csproj", "{EE6357A9-9BA4-486C-9911-CAA5EAE601C6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.MiniKpay.Domain", "SEPDotNetCore.DigitalWalletADomain\SEPDotNetCore.MiniKpay.Domain.csproj", "{7555D749-0BCE-4EA8-AB44-BB681267D18B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.MiniKpay.Api", "SEPDotNetCore.DigitalWalletRestApi\SEPDotNetCore.MiniKpay.Api.csproj", "{98663D53-E33F-404E-8656-115147C2AAA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,10 +60,6 @@ Global
 		{F311822D-6109-41AE-A21A-098B94AED765}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F311822D-6109-41AE-A21A-098B94AED765}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F311822D-6109-41AE-A21A-098B94AED765}.Release|Any CPU.Build.0 = Release|Any CPU
-		{97191EBE-EFA0-4766-AE1F-3CCFF8FA1467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97191EBE-EFA0-4766-AE1F-3CCFF8FA1467}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97191EBE-EFA0-4766-AE1F-3CCFF8FA1467}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97191EBE-EFA0-4766-AE1F-3CCFF8FA1467}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9E5BB44D-518F-4321-B759-5BA6C52856F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9E5BB44D-518F-4321-B759-5BA6C52856F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E5BB44D-518F-4321-B759-5BA6C52856F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -90,14 +80,6 @@ Global
 		{EE6357A9-9BA4-486C-9911-CAA5EAE601C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE6357A9-9BA4-486C-9911-CAA5EAE601C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE6357A9-9BA4-486C-9911-CAA5EAE601C6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7555D749-0BCE-4EA8-AB44-BB681267D18B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7555D749-0BCE-4EA8-AB44-BB681267D18B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7555D749-0BCE-4EA8-AB44-BB681267D18B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7555D749-0BCE-4EA8-AB44-BB681267D18B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{98663D53-E33F-404E-8656-115147C2AAA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98663D53-E33F-404E-8656-115147C2AAA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98663D53-E33F-404E-8656-115147C2AAA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98663D53-E33F-404E-8656-115147C2AAA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
