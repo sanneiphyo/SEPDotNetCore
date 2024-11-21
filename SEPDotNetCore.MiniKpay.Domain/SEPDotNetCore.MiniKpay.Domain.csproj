@@ -10,8 +10,4 @@
     <ProjectReference Include="..\SepDotNetCore.MiniKpay.DataBase\SEPDotNetCore.MiniKpay.DataBase.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
 </Project>
