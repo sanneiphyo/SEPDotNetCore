@@ -16,7 +16,6 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.WalletUser
 
         public TblWalletUser Register(TblWalletUser newUser)
         {
-            ValidateUser(newUser);
             _db.TblWalletUsers.Add(newUser);
             _db.SaveChanges();
             return newUser;
@@ -46,9 +45,26 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.WalletUser
         {
 
             var item = _db.TblWalletUsers.AsNoTracking().FirstOrDefault( x => x.UserId == id)!;
+
             return item;
     
         }
+
+        public TblWalletUser ChangePin(int id , TblWalletUser newPin)
+        {
+            var item = _db.TblWalletUsers.AsNoTracking().FirstOrDefault(x => x.UserId == id)!;
+            if(item is null)
+            {
+                return null;
+            }
+
+            item.PinCode = item.PinCode;
+            _db.Entry(item).State = EntityState.Modified;
+            _db.SaveChanges();
+            return item;
+        }
+
+         
 
         private void ValidateUser(TblWalletUser user)
         {

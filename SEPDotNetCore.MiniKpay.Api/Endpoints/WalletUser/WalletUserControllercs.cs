@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SEPDotNetCore.MiniKpay.DataBase.DataBase.AppDbContextModels;
+using SEPDotNetCore.MiniKpay.DataBase.AppDbContextModels;
 using SEPDotNetCore.MiniKpay.Domain.features.WalletUser;
 
 
@@ -17,49 +17,34 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints.WalletUser
         }
 
         [HttpPost("Register")]
-        public IActionResult Register([FromBody] TblWalletUser newUser)
+        public IActionResult Register(TblWalletUser newUser)
         {
-            
-            try
-            {
-                var user =  _service.Register(newUser);
-                return CreatedAtAction(nameof(GetUser), new { id = user.UserId }, user);
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+            var user = _service.Register(newUser);
+            return Ok(user);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetUser(int id)
         {
             var user = _service.GetUser(id);
-            if (user == null)
-            {
-                return NotFound(new { message = "User not found." });
-            }
 
             return Ok(user);
         }
 
 
         [HttpPatch("UpdateProfile/{id}")]
-        public Task<IActionResult> UpdateProfile(int id, [FromBody] TblWalletUser updatedUser)
+        public IActionResult UpdateProfile(int id,TblWalletUser updatedUser)
         {
-            try
-            {
-                var user =  _service.UpdateProfile(id, updatedUser);
-                if (user == null)
-                {
-                    return Task.FromResult<IActionResult>(NotFound());
-                }
-                return Task.FromResult<IActionResult>(NoContent());
-            }
-            catch (ArgumentException ex)
-            {
-                return Task.FromResult<IActionResult>(BadRequest(new { message = ex.Message }));
-            }
+            var user = _service.UpdateProfile(id, updatedUser);
+            return Ok(user);
+        }
+
+
+        [HttpPatch("ChangePin/{id}")]
+        public IActionResult ChangePin(int id, TblWalletUser newPin)
+        {
+            var user = _service.ChangePin(id, newPin);
+            return Ok(user);
         }
     }
 }
