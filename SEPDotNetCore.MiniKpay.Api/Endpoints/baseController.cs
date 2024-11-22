@@ -21,6 +21,8 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints
                 BaseResponseModel baseResponseModel = JsonConvert.DeserializeObject<BaseResponseModel>(
                         jObj["responseModel"]!.ToString()!)!;
 
+                if (baseResponseModel.RespType == EnumRespType.pending)
+                    return BadRequest(model);
 
                 if (baseResponseModel.RespType == EnumRespType.ValidationError)
                     return BadRequest(model);

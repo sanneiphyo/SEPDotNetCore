@@ -38,6 +38,17 @@ namespace SEPDotNetCore.MiniKpay.Domain.Models
             };
         }
 
+        public static BaseResponseModel Pending(string respCode, string respDesp)
+        {
+            return new BaseResponseModel()
+            {
+                IsSuccess = true,
+                RespCode = respCode,
+                RespDesp = respDesp,
+                RespType = EnumRespType.pending,
+            };
+        }
+
         public static BaseResponseModel SystemError(string respCode, string respDesp)
         {
             return new BaseResponseModel()
@@ -54,6 +65,7 @@ namespace SEPDotNetCore.MiniKpay.Domain.Models
     {
         None, //Enum တွင် client ဘက်မှ ိReq data ဘာမှမထည့်ပေးလိုက်သော် အပေါ်မှာ None မသုံးထားလျှင် Success ဖြသ်သွားနိုင်သဖြင့်( None)အသုံးပြုထားခြင်းဖြစ်သည်
         Success,
+        pending,
         ValidationError,
         SystemError
 
