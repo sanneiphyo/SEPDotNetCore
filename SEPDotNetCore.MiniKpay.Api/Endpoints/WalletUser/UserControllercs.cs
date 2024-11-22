@@ -1,17 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SEPDotNetCore.MiniKpay.DataBase.AppDbContextModels;
-using SEPDotNetCore.MiniKpay.Domain.features.WalletUser;
+
+using SEPDotNetCore.MiniKpay.Domain.features.User;
+using SEPDotNetCore.MiniKpay.Domain.Models;
 
 
 namespace SEPDotNetCore.MiniKpay.Api.Endpoints.WalletUser
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class WalletUserController : ControllerBase
+    public class UserController : baseController 
     {
         private readonly UserService _service;
 
-        public WalletUserController(UserService service)
+        public UserController(UserService service)
         {
             _service = service;
         }
@@ -40,6 +42,7 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints.WalletUser
         }
 
 
+      
         [HttpPatch("ChangePin/{id}")]
         public IActionResult ChangePin(int id, TblWalletUser newPin)
         {

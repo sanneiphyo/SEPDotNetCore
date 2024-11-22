@@ -17,7 +17,7 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.Transactions
         {
             _db = context;
         }
-        public Task <TransferResponseModel> Transfer (int senderId , int receiverId , decimal amount)
+        public TransferResponseModel Transfer (int senderId , int receiverId , decimal amount)
         {
             TransferResponseModel model = new TransferResponseModel();
 
@@ -32,7 +32,7 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.Transactions
 
             if (sender.Balance < amount)
             {
-              model.responseModel = BaseResponseModel.ValidationError("999", "Insufficient balance");
+                  model.responseModel = BaseResponseModel.ValidationError("999", "Insufficient balance");
                 goto Result;
             }
 
@@ -54,7 +54,7 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.Transactions
             model.responseModel = BaseResponseModel.Success("000","Success");
 
         Result:
-            return Task.FromResult(model);
+            return model;
 
             
         }

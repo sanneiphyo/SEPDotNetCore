@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using SEPDotNetCore.MiniKpay.DataBase.AppDbContextModels;
 
-
-
-namespace SEPDotNetCore.MiniKpay.Domain.features.WalletUser
+namespace SEPDotNetCore.MiniKpay.Domain.features.User
 {
-    //Bussiness logic + database
     public class UserService
     {
         private readonly AppDbContext _db;
@@ -23,15 +25,15 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.WalletUser
             return newUser;
         }
 
-        public TblWalletUser UpdateProfile(int id , TblWalletUser updatedUser)
+        public TblWalletUser UpdateProfile(int id, TblWalletUser updatedUser)
         {
             var user = _db.TblWalletUsers.FirstOrDefault(x => x.UserId == id);
 
             if (user is null)
             {
                 return null;
-            } 
-         
+            }
+
             ValidateUser(updatedUser);
 
             user.UserName = updatedUser.UserName;
@@ -45,16 +47,16 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.WalletUser
         public TblWalletUser GetUser(int id)
         {
 
-            var item = _db.TblWalletUsers.AsNoTracking().FirstOrDefault( x => x.UserId == id)!;
+            var item = _db.TblWalletUsers.AsNoTracking().FirstOrDefault(x => x.UserId == id)!;
 
             return item;
-    
+
         }
 
-        public TblWalletUser ChangePin(int id , TblWalletUser newPin)
+        public TblWalletUser ChangePin(int id, TblWalletUser newPin)
         {
             var item = _db.TblWalletUsers.AsNoTracking().FirstOrDefault(x => x.UserId == id)!;
-            if(item is null)
+            if (item is null)
             {
                 return null;
             }
@@ -65,7 +67,7 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.WalletUser
             return item;
         }
 
-         
+
 
         private void ValidateUser(TblWalletUser user)
         {
