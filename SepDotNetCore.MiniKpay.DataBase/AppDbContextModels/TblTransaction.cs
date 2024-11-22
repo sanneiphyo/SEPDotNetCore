@@ -17,6 +17,6 @@ public partial class TblTransaction
 
     public DateTime TransactionDate { get; set; }
 
-    public virtual TblWalletUser? SenderUser { get; set; }
+ 
 
 }

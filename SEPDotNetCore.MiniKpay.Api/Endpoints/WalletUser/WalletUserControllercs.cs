@@ -9,9 +9,9 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints.WalletUser
     [ApiController]
     public class WalletUserController : ControllerBase
     {
-        private readonly WalletUserService _service;
+        private readonly UserService _service;
 
-        public WalletUserController(WalletUserService service)
+        public WalletUserController(UserService service)
         {
             _service = service;
         }

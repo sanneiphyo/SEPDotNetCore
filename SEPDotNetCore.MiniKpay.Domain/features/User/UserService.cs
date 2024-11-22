@@ -5,11 +5,12 @@ using SEPDotNetCore.MiniKpay.DataBase.AppDbContextModels;
 
 namespace SEPDotNetCore.MiniKpay.Domain.features.WalletUser
 {
-    public class WalletUserService
+    //Bussiness logic + database
+    public class UserService
     {
         private readonly AppDbContext _db;
 
-        public WalletUserService(AppDbContext context)
+        public UserService(AppDbContext context)
         {
             _db = context;
         }
@@ -17,6 +18,7 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.WalletUser
         public TblWalletUser Register(TblWalletUser newUser)
         {
             _db.TblWalletUsers.Add(newUser);
+
             _db.SaveChanges();
             return newUser;
         }
@@ -34,7 +36,6 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.WalletUser
 
             user.UserName = updatedUser.UserName;
             user.MobileNumber = updatedUser.MobileNumber;
-            user.Balance = updatedUser.Balance;
             user.Status = updatedUser.Status;
 
             _db.SaveChanges();

@@ -17,5 +17,5 @@ public partial class TblWalletUser
 
     public string? Status { get; set; }
 
-    public virtual ICollection<TblTransaction> TblTransactions { get; set; } = new List<TblTransaction>();
+ 
 }
