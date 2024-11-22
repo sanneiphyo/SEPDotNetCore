@@ -25,7 +25,7 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.User
             return newUser;
         }
 
-        public TblWalletUser UpdateProfile(int id, TblWalletUser updatedUser)
+        public  TblWalletUser UpdateProfile(int id, TblWalletUser updatedUser)
         {
             var user = _db.TblWalletUsers.FirstOrDefault(x => x.UserId == id);
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using SEPDotNetCore.MiniKpay.DataBase.AppDbContextModels;
 using SEPDotNetCore.MiniKpay.Domain.Models;
 
@@ -17,22 +18,68 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.Transactions
         {
             _db = context;
         }
-        public TransferResponseModel Transfer (int senderId , int receiverId , decimal amount)
+        //public TransferResponseModel Transfer (int senderId , int receiverId , decimal amount)
+        //{
+        //    TransferResponseModel model = new TransferResponseModel();
+
+        //    var sender = _db.TblWalletUsers.FirstOrDefault(x => x.UserId == senderId);  
+        //    var receiver = _db.TblWalletUsers.FirstOrDefault (x => x.UserId == receiverId);
+
+        //    if (sender == null || receiver == null) 
+        //    {
+        //       model.responseModel = BaseResponseModel.ValidationError("999", "Sender or Receiver not found");
+        //        goto Result;
+        //    }
+
+        //    if (sender.Balance < amount)
+        //    {
+        //          model.responseModel = BaseResponseModel.ValidationError("999", "Insufficient balance");
+        //        goto Result;
+        //    }
+
+        //    sender.Balance -= amount;
+        //    receiver.Balance += amount;
+
+        //    var Transaction = new TblTransaction
+        //    {
+        //        SenderUserId = senderId,
+        //        ReceiverUserId= receiverId,
+        //        Amount = amount,
+        //        TransactionDate = DateTime.UtcNow
+
+        //    };
+
+        //    _db.TblTransactions.Add(Transaction);
+        //    _db.SaveChanges();
+
+        //    model.Transaction = Transaction;
+        //    model.responseModel = BaseResponseModel.Success("000","Success");
+
+        //Result:
+        //    return model;
+
+
+        //}
+
+
+
+        
+        public async Task<Result<ResultTransferResponseModel>> Transfer(int senderId, int receiverId, decimal amount)
         {
-            TransferResponseModel model = new TransferResponseModel();
+            Result<ResultTransferResponseModel> model = new Result<ResultTransferResponseModel>();
 
-            var sender = _db.TblWalletUsers.FirstOrDefault(x => x.UserId == senderId);  
-            var receiver = _db.TblWalletUsers.FirstOrDefault (x => x.UserId == receiverId);
+            var sender = await _db.TblWalletUsers.FirstOrDefaultAsync(x => x.UserId == senderId);
+            var receiver = await _db.TblWalletUsers.FirstOrDefaultAsync(x => x.UserId == receiverId);
 
-            if (sender == null || receiver == null) 
+            if (sender == null || receiver == null)
             {
-               model.responseModel = BaseResponseModel.ValidationError("999", "Sender or Receiver not found");
+                model = Result<ResultTransferResponseModel>.ValidationError( "Sender or Receiver not found");
                 goto Result;
             }
 
             if (sender.Balance < amount)
             {
-                  model.responseModel = BaseResponseModel.ValidationError("999", "Insufficient balance");
+                model = Result<ResultTransferResponseModel>.ValidationError("Insufficient balance.");
                 goto Result;
             }
 
@@ -42,21 +89,24 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.Transactions
             var Transaction = new TblTransaction
             {
                 SenderUserId = senderId,
-                ReceiverUserId= receiverId,
+                ReceiverUserId = receiverId,
                 Amount = amount,
                 TransactionDate = DateTime.UtcNow
 
             };
 
-            _db.TblTransactions.Add(Transaction);
-            _db.SaveChanges();
+            await _db.TblTransactions.AddAsync(Transaction);
+            await _db.SaveChangesAsync();
 
-            model.responseModel = BaseResponseModel.Success("000","Success");
-
+            ResultTransferResponseModel item = new ResultTransferResponseModel()
+            {
+                Transaction = Transaction
+            };
+            model = Result<ResultTransferResponseModel>.Success(item, "Success.");
         Result:
             return model;
 
-            
+
         }
     }
 }
