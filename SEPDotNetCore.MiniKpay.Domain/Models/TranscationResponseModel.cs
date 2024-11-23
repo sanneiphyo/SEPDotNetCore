@@ -13,7 +13,7 @@ namespace SEPDotNetCore.MiniKpay.Domain.Models
         public class ResultTransactionResponseModel
         {
 
-            public TblTransaction Transaction { get; set; }
+            public TblTransaction? Transaction { get; set; }
 
         }
     }

@@ -19,51 +19,10 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.Transactions
         {
             _db = context;
         }
-        //public TransferResponseModel Transfer (int senderId , int receiverId , decimal amount)
-        //{
-        //    TransferResponseModel model = new TransferResponseModel();
-
-        //    var sender = _db.TblWalletUsers.FirstOrDefault(x => x.UserId == senderId);  
-        //    var receiver = _db.TblWalletUsers.FirstOrDefault (x => x.UserId == receiverId);
-
-        //    if (sender == null || receiver == null) 
-        //    {
-        //       model.responseModel = BaseResponseModel.ValidationError("999", "Sender or Receiver not found");
-        //        goto Result;
-        //    }
-
-        //    if (sender.Balance < amount)
-        //    {
-        //          model.responseModel = BaseResponseModel.ValidationError("999", "Insufficient balance");
-        //        goto Result;
-        //    }
-
-        //    sender.Balance -= amount;
-        //    receiver.Balance += amount;
-
-        //    var Transaction = new TblTransaction
-        //    {
-        //        SenderUserId = senderId,
-        //        ReceiverUserId= receiverId,
-        //        Amount = amount,
-        //        TransactionDate = DateTime.UtcNow
-
-        //    };
-
-        //    _db.TblTransactions.Add(Transaction);
-        //    _db.SaveChanges();
-
-        //    model.Transaction = Transaction;
-        //    model.responseModel = BaseResponseModel.Success("000","Success");
-
-        //Result:
-        //    return model;
-
-
-        //}
-
-        
-        public async Task<Result<ResultTransferResponseModel>> Transfer(int senderId, int receiverId, decimal amount)
+      
+        //ResultTransactionResponseModel သည် Transfer လုပ်ဖို့ရန်ဖြစ်တယ်
+        //ResultTransactionResponseModel သည် Withdraw / Deposit လုပ်ဖို့ရန်ဖြစ်တယ် => မတူညီသော Model နှစ်ခုဖြစ်တယ်
+        public async Task<Result<ResultTransferResponseModel>> Transfer(int senderId, int receiverId, decimal amount) 
         {
             Result<ResultTransferResponseModel> model = new Result<ResultTransferResponseModel>();
 
@@ -110,19 +69,25 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.Transactions
 
 
 
-        public async Task  Withdraw(int userId , decimal amount)
+
+        public async Task<Result<ResultTransactionResponseModel>> Withdraw(int userId , decimal amount)  
         {
+
+            Result<ResultTransactionResponseModel> model = new Result<ResultTransactionResponseModel>();
+
             var user = await _db.TblWalletUsers.FirstOrDefaultAsync(x => x.UserId == userId);
 
             if (user == null)
             {
-                throw new Exception("User Not Found");
+                model = Result<ResultTransactionResponseModel>.ValidationError("User not found");
+                goto Result;
             }
 
 
             if (user.Balance < amount)
             {
-                throw new ArgumentException("Insufficient balance.");
+                model = Result<ResultTransactionResponseModel>.ValidationError("Insufficient balance.");
+                goto Result;
             }
             user.Balance -= amount;
 
@@ -136,23 +101,35 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.Transactions
             _db.TblTransactions.Add(transaction);
             await _db.SaveChangesAsync();
 
+            ResultTransactionResponseModel item = new ResultTransactionResponseModel()
+            {
+                Transaction = transaction
+            };
+            model = Result<ResultTransactionResponseModel>.Success(item, "Success.");
+        Result:
+            return model;
+
 
         }
 
-        public async Task Deposit(int userId, decimal amount)
+        public async Task<Result<ResultTransactionResponseModel>> Deposit(int userId, decimal amount)
         {
+
+            Result<ResultTransactionResponseModel> model = new Result<ResultTransactionResponseModel>();
 
             var user = await _db.TblWalletUsers.FirstOrDefaultAsync(x => x.UserId == userId);
 
             if (user == null)
             {
-                throw new Exception("User Not Found");
+                model = Result<ResultTransactionResponseModel>.ValidationError("User not found");
+                goto Result;
             }
 
 
             if (user.Balance < amount)
             {
-                throw new ArgumentException("Insufficient balance.");
+                model = Result<ResultTransactionResponseModel>.ValidationError("Insufficient balance.");
+                goto Result;
             }
             user.Balance += amount;
 
@@ -166,6 +143,61 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.Transactions
             _db.TblTransactions.Add(transaction);
             await _db.SaveChangesAsync();
 
+            ResultTransactionResponseModel item = new ResultTransactionResponseModel()
+            {
+                Transaction = transaction
+            };
+            model = Result<ResultTransactionResponseModel>.Success(item, "Success.");
+        Result:
+            return model;
+
         }
     }
 }
+
+
+//public TransferResponseModel Transfer (int senderId , int receiverId , decimal amount)
+//{
+//    TransferResponseModel model = new TransferResponseModel();
+
+//    var sender = _db.TblWalletUsers.FirstOrDefault(x => x.UserId == senderId);  
+//    var receiver = _db.TblWalletUsers.FirstOrDefault (x => x.UserId == receiverId);
+
+//    if (sender == null || receiver == null) 
+//    {
+//       model.responseModel = BaseResponseModel.ValidationError("999", "Sender or Receiver not found");
+//        goto Result;
+//    }
+
+//    if (sender.Balance < amount)
+//    {
+//          model.responseModel = BaseResponseModel.ValidationError("999", "Insufficient balance");
+//        goto Result;
+//    }
+
+//    sender.Balance -= amount;
+//    receiver.Balance += amount;
+
+//    var Transaction = new TblTransaction
+//    {
+//        SenderUserId = senderId,
+//        ReceiverUserId= receiverId,
+//        Amount = amount,
+//        TransactionDate = DateTime.UtcNow
+
+//    };
+
+//    _db.TblTransactions.Add(Transaction);
+//    _db.SaveChanges();
+
+//    model.Transaction = Transaction;
+//    model.responseModel = BaseResponseModel.Success("000","Success");
+
+//Result:
+//    return model;
+
+
+//}
+
+
+
