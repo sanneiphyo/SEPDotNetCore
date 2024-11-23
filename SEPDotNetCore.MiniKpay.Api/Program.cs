@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using SEPDotNetCore.MiniKpay.DataBase.AppDbContextModels;
-using SEPDotNetCore.MiniKpay.Domain.features.WalletUser;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddScoped<UserService>();
+
 
 
 builder.Services.AddControllers();

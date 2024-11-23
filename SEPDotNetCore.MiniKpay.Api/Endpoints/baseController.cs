@@ -15,7 +15,7 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints
 
             //obj နဲ့့ဆို ဘာမဆိုလက်ခံတယ် ဒါကြောင့် ဲျJsonConvert = stringအရင်ပြောငိးပေးတယ် 
         {
-            ဲJObject jObj = JObject.Parse(JsonConvert.SerializeObject(model)); //string ပြောင်းပြီး JObject နဲ့ ပြန်ငုံရေးထားခြင်းဖြစ်တယ်
+            JObject jObj = JObject.Parse(JsonConvert.SerializeObject(model)); //string ပြောင်းပြီး JObject နဲ့ ပြန်ငုံရေးထားခြင်းဖြစ်တယ်
             if (jObj.ContainsKey("responseModel")) 
             {
                 BaseResponseModel baseResponseModel = JsonConvert.DeserializeObject<BaseResponseModel>(
