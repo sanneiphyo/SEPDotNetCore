@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SEPDotNetCore.MiniKpay.DataBase.AppDbContextModels;
 using SEPDotNetCore.MiniKpay.Domain.Models;
+using static SEPDotNetCore.MiniKpay.Domain.Models.TransactionResponseModel;
 
 namespace SEPDotNetCore.MiniKpay.Domain.features.Transactions
 {
@@ -109,24 +110,22 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.Transactions
 
 
 
-        public async Task<Result<ResultTransactionResponseModel>> Withdraw(int userId , decimal amount)
+        public async Task  Withdraw(int userId , decimal amount)
         {
-            var user = await _db.TblWalletUsers.FirstOrDefaultAsync(u => u.UserId == userId);
+            var user = await _db.TblWalletUsers.FirstOrDefaultAsync(x => x.UserId == userId);
 
             if (user == null)
             {
-                model = Result<ResultTransactionResponseModel>.ValidationError("User not Found");
-                goto Result;
+                throw new Exception("User Not Found");
             }
 
-            if (sender.Balance < amount)
+
+            if (user.Balance < amount)
             {
-                model = Result<ResultTransactionResponseModel>.ValidationError("Insufficient balance.");
-                goto Result;
+                throw new ArgumentException("Insufficient balance.");
             }
-
             user.Balance -= amount;
-            
+
             var transaction = new TblTransaction
             {
                 SenderUserId = userId,
@@ -136,29 +135,37 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.Transactions
             };
             _db.TblTransactions.Add(transaction);
             await _db.SaveChangesAsync();
+
+
         }
 
-        public async Task<Result<ResultTransactionResponseModel>> Deposit(int userId, decimal amount)
+        public async Task Deposit(int userId, decimal amount)
         {
+
+            var user = await _db.TblWalletUsers.FirstOrDefaultAsync(x => x.UserId == userId);
+
             if (user == null)
             {
-                model = Result<ResultTransactionResponseModel>.ValidationError("User not Found");
-                goto Result;
+                throw new Exception("User Not Found");
             }
 
 
+            if (user.Balance < amount)
+            {
+                throw new ArgumentException("Insufficient balance.");
+            }
             user.Balance += amount;
 
             var transaction = new TblTransaction
             {
-                ReceiverUserId = userId,
+                SenderUserId = userId,
                 Amount = amount,
                 TransactionDate = DateTime.Now,
-                TransactionType = "Deposit"
+                TransactionType = "Withdraw"
             };
-
             _db.TblTransactions.Add(transaction);
             await _db.SaveChangesAsync();
+
         }
     }
 }

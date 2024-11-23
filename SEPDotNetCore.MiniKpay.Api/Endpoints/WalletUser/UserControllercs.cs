@@ -9,7 +9,7 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints.WalletUser
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : baseController 
+    public class UserController : ControllerBase
     {
         private readonly UserService _service;
 
@@ -19,34 +19,34 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints.WalletUser
         }
 
         [HttpPost("Register")]
-        public IActionResult Register(TblWalletUser newUser)
+        public  async Task<IActionResult> Register(TblWalletUser newUser)
         {
-            var user = _service.Register(newUser);
+            var user =await _service.Register(newUser);
             return Ok(user);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetUser(int id)
+        public async Task<IActionResult> GetUserAsync(int id)
         {
-            var user = _service.GetUser(id);
+            var user = await _service.GetUser(id);
 
             return Ok(user);
         }
 
 
         [HttpPatch("UpdateProfile/{id}")]
-        public IActionResult UpdateProfile(int id,TblWalletUser updatedUser)
+        public async Task<IActionResult> UpdateProfileAsync(int id,TblWalletUser updatedUser)
         {
-            var user = _service.UpdateProfile(id, updatedUser);
+            var user = await _service.UpdateProfileAsync(id, updatedUser);
             return Ok(user);
         }
 
 
       
         [HttpPatch("ChangePin/{id}")]
-        public IActionResult ChangePin(int id, TblWalletUser newPin)
+        public async Task<IActionResult> ChangePin(int id, TblWalletUser newPin)
         {
-            var user = _service.ChangePin(id, newPin);
+            var user =await  _service.ChangePin(id, newPin);
             return Ok(user);
         }
     }

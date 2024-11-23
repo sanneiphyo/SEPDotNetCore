@@ -18,9 +18,9 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints.Transaction
         }
 
         [HttpPost("Transfer")]
-        public IActionResult Transfer(TransferRequestModel transferRequestModel)
+        public async Task<IActionResult> Transfer(TransferRequestModel transferRequestModel)
         {
-            var model = _service.Transfer(transferRequestModel.SenderId, transferRequestModel.ReceiverId, transferRequestModel.Amount);
+            var model = await _service.Transfer(transferRequestModel.SenderId, transferRequestModel.ReceiverId, transferRequestModel.Amount);
 
             return Execute(model);
         }
@@ -29,9 +29,18 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints.Transaction
         public async Task<IActionResult> Withdraw( TransactionRequestModel requestModel)
         {
            
-                await _service.Withdraw(requestModel.UserId, requestModel.Amount);
-                return Execute(model);
-            
+             await  _service.Withdraw(requestModel.UserId, requestModel.Amount);
+            return NoContent();
+
+        }
+
+        [HttpPost("deposit")]
+        public  async Task<IActionResult> Deposit(TransactionRequestModel requestModel)
+        {
+
+            await _service.Deposit(requestModel.UserId, requestModel.Amount);
+            return NoContent();
+
         }
 
     }

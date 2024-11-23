@@ -35,8 +35,7 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.User
                 return null;
             }
 
-            ValidateUser(updatedUser);
-
+           
             user.UserName = updatedUser.UserName;
             user.MobileNumber = updatedUser.MobileNumber;
             user.Status = updatedUser.Status;
@@ -48,7 +47,7 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.User
         public async Task<TblWalletUser> GetUser(int id)
         {
 
-            var item = _db.TblWalletUsers.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == id)!;
+            var item = await _db.TblWalletUsers.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == id)!;
 
             return item;
 
@@ -56,7 +55,7 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.User
 
         public async Task<TblWalletUser> ChangePin(int id, TblWalletUser newPin)
         {
-            var item = _db.TblWalletUsers.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == id)!;
+            var item = await _db.TblWalletUsers.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == id)!;
             if (item is null)
             {
                 return null;
