@@ -37,3 +37,4 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints
         }
     }
 }
+8

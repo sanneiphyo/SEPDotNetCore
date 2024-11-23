@@ -22,7 +22,8 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints.Transaction
         {
             var model = await _service.Transfer(transferRequestModel.SenderId, transferRequestModel.ReceiverId, transferRequestModel.Amount);
 
-            return Execute(model);
+            //return Execute(model);
+            return NoContent();
         }
 
         [HttpPost("Withdraw")]
@@ -30,7 +31,7 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints.Transaction
         {
            
              await  _service.Withdraw(requestModel.UserId, requestModel.Amount);
-            return NoContent();
+            return NoContent();//operation က success ဖြစ်ပြီး return data မပြန်တဲ့အခါသုံးတယ်
 
         }
 
@@ -45,3 +46,4 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints.Transaction
 
     }
 }
+ 
