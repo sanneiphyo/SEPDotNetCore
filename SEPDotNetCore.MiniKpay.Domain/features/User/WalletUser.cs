@@ -17,17 +17,18 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.User
             _db = context;
         }
 
-        public TblWalletUser Register(TblWalletUser newUser)
-        {
-            _db.TblWalletUsers.Add(newUser);
 
-            _db.SaveChanges();
+        public async Task<TblWalletUser> RegisterAsync(TblWalletUser newUser)
+        {
+
+            _db.TblWalletUsers.Add(newUser);
+            await _db.SaveChangesAsync();
             return newUser;
         }
 
-        public  TblWalletUser UpdateProfile(int id, TblWalletUser updatedUser)
+        public async Task<TblWalletUser> UpdateProfileAsync (int id, TblWalletUser updatedUser)
         {
-            var user = _db.TblWalletUsers.FirstOrDefault(x => x.UserId == id);
+            var user =await _db.TblWalletUsers.FirstOrDefaultAsync(x => x.UserId == id);
 
             if (user is null)
             {
@@ -69,37 +70,37 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.User
 
 
 
-        private void ValidateUser(TblWalletUser user)
-        {
-            if (string.IsNullOrWhiteSpace(user.MobileNumber))
-            {
-                throw new ArgumentException("Mobile number cannot be empty.");
-            }
+        //private void ValidateUser(TblWalletUser user)
+        //{
+        //    if (string.IsNullOrWhiteSpace(user.MobileNumber))
+        //    {
+        //        throw new ArgumentException("Mobile number cannot be empty.");
+        //    }
 
-            if (!System.Text.RegularExpressions.Regex.IsMatch(user.MobileNumber, @"^\+?[1-9]\d{1,14}$"))
-            {
-                throw new ArgumentException("Invalid mobile number format.");
-            }
+        //    if (!System.Text.RegularExpressions.Regex.IsMatch(user.MobileNumber, @"^\+?[1-9]\d{1,14}$"))
+        //    {
+        //        throw new ArgumentException("Invalid mobile number format.");
+        //    }
 
-            if (string.IsNullOrWhiteSpace(user.UserName))
-            {
-                throw new ArgumentException("User name cannot be empty.");
-            }
+        //    if (string.IsNullOrWhiteSpace(user.UserName))
+        //    {
+        //        throw new ArgumentException("User name cannot be empty.");
+        //    }
 
-            if (user.UserName.Length > 100)
-            {
-                throw new ArgumentException("User name cannot be more than 100 characters.");
-            }
+        //    if (user.UserName.Length > 100)
+        //    {
+        //        throw new ArgumentException("User name cannot be more than 100 characters.");
+        //    }
 
-            if (string.IsNullOrWhiteSpace(user.PinCode))
-            {
-                throw new ArgumentException("Pin code cannot be empty.");
-            }
+        //    if (string.IsNullOrWhiteSpace(user.PinCode))
+        //    {
+        //        throw new ArgumentException("Pin code cannot be empty.");
+        //    }
 
-            if (user.PinCode.Length != 6)
-            {
-                throw new ArgumentException("Pin code must be exactly 6 characters.");
-            }
+        //    if (user.PinCode.Length != 6)
+        //    {
+        //        throw new ArgumentException("Pin code must be exactly 6 characters.");
+        //    }
 
             //if (user.Balance.HasValue && user.Balance.Value < 0)
             //{
