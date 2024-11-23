@@ -61,8 +61,6 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.Transactions
 
         //}
 
-
-
         
         public async Task<Result<ResultTransferResponseModel>> Transfer(int senderId, int receiverId, decimal amount)
         {
@@ -107,6 +105,60 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.Transactions
             return model;
 
 
+        }
+
+
+
+        public async Task<Result<ResultTransactionResponseModel>> Withdraw(int userId , decimal amount)
+        {
+            var user = await _db.TblWalletUsers.FirstOrDefaultAsync(u => u.UserId == userId);
+
+            if (user == null)
+            {
+                model = Result<ResultTransactionResponseModel>.ValidationError("User not Found");
+                goto Result;
+            }
+
+            if (sender.Balance < amount)
+            {
+                model = Result<ResultTransactionResponseModel>.ValidationError("Insufficient balance.");
+                goto Result;
+            }
+
+            user.Balance -= amount;
+            
+            var transaction = new TblTransaction
+            {
+                SenderUserId = userId,
+                Amount = amount,
+                TransactionDate = DateTime.Now,
+                TransactionType = "Withdraw"
+            };
+            _db.TblTransactions.Add(transaction);
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task<Result<ResultTransactionResponseModel>> Deposit(int userId, decimal amount)
+        {
+            if (user == null)
+            {
+                model = Result<ResultTransactionResponseModel>.ValidationError("User not Found");
+                goto Result;
+            }
+
+
+            user.Balance += amount;
+
+            var transaction = new TblTransaction
+            {
+                ReceiverUserId = userId,
+                Amount = amount,
+                TransactionDate = DateTime.Now,
+                TransactionType = "Deposit"
+            };
+
+            _db.TblTransactions.Add(transaction);
+            await _db.SaveChangesAsync();
         }
     }
 }

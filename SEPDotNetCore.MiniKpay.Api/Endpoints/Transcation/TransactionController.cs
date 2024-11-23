@@ -5,7 +5,7 @@ using SEPDotNetCore.MiniKpay.Domain.Models;
 
 namespace SEPDotNetCore.MiniKpay.Api.Endpoints.Transaction
 {
-    [Route("api/[controller]")]
+    [Route("api/Transaction/[controller]")]
     [ApiController]
     public class TransactionController : baseController //baseController က parent ဖြစ် ပြီးTransactionController  က child ဖြစ်သွားတယ်
     {
@@ -25,6 +25,14 @@ namespace SEPDotNetCore.MiniKpay.Api.Endpoints.Transaction
             return Execute(model);
         }
 
-       
+        [HttpPost("Withdraw")]
+        public async Task<IActionResult> Withdraw( TransactionRequestModel requestModel)
+        {
+           
+                await _service.Withdraw(requestModel.UserId, requestModel.Amount);
+                return Execute(model);
+            
+        }
+
     }
 }

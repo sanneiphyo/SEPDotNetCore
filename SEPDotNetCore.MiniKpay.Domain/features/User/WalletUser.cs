@@ -18,7 +18,7 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.User
         }
 
 
-        public async Task<TblWalletUser> RegisterAsync(TblWalletUser newUser)
+        public async Task<TblWalletUser> Register(TblWalletUser newUser)
         {
 
             _db.TblWalletUsers.Add(newUser);
@@ -45,18 +45,18 @@ namespace SEPDotNetCore.MiniKpay.Domain.features.User
             return user;
         }
 
-        public TblWalletUser GetUser(int id)
+        public async Task<TblWalletUser> GetUser(int id)
         {
 
-            var item = _db.TblWalletUsers.AsNoTracking().FirstOrDefault(x => x.UserId == id)!;
+            var item = _db.TblWalletUsers.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == id)!;
 
             return item;
 
         }
 
-        public TblWalletUser ChangePin(int id, TblWalletUser newPin)
+        public async Task<TblWalletUser> ChangePin(int id, TblWalletUser newPin)
         {
-            var item = _db.TblWalletUsers.AsNoTracking().FirstOrDefault(x => x.UserId == id)!;
+            var item = _db.TblWalletUsers.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == id)!;
             if (item is null)
             {
                 return null;
