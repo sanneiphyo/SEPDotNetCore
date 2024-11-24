@@ -13,6 +13,5 @@ namespace SEPDotNetCore.MiniKpay.Domain.Models
       
         public decimal Amount { get; set; }
 
-
     }
 }
