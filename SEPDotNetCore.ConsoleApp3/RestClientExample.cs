@@ -114,5 +114,6 @@ namespace SEPDotNetCore.ConsoleApp3
             public string title { get; set; }
             public string body { get; set; }
         }
+
     }
 }
