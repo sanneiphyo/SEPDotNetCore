@@ -14,7 +14,7 @@ namespace SEPDotNetCore.RestApi.Controllers
         {
             _service = new BlogServiceController();
         }
-
+        
         [HttpGet]
         public IActionResult GetBlogs()
         {

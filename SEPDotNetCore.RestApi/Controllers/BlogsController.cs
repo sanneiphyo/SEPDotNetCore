@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SEPDotNetCore.ConsoleApp;
 using SEPDotNetCore.Database.Models;
 
 
@@ -11,7 +10,8 @@ namespace SEPDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogsController : ControllerBase
     {
-        private readonly AppDbContext _db = new AppDbContext();   
+        private readonly AppDbContext _db = new AppDbContext() ;
+
         [HttpGet]
         public IActionResult GetBlogs()
         {
@@ -20,7 +20,7 @@ namespace SEPDotNetCore.RestApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetBlogs(int id)
+        public IActionResult GetBlog(int id)
         {
             var item = _db.TblBlogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
 
