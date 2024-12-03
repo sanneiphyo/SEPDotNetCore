@@ -10,7 +10,13 @@ namespace SEPDotNetCore.Domain.Features.Blog
 {
     public class BlogService
     {
-        private readonly AppDbContext _db = new AppDbContext();
+        private readonly AppDbContext _db;
+
+        public BlogService(AppDbContext db)
+        {
+            _db = db;
+        }
+
         public List<TblBlog> GetBlogs()
         {
             var model = _db.TblBlogs.AsNoTracking().ToList();

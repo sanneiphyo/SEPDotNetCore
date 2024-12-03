@@ -36,6 +36,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.MiniKpay.Api"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.ConsoleApp3", "SEPDotNetCore.ConsoleApp3\SEPDotNetCore.ConsoleApp3.csproj", "{A7AEE40E-3B13-4DF1-841A-1FDAFF2E68C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.MinimalApi", "SEPDotNetCore.MinimalApi\SEPDotNetCore.MinimalApi.csproj", "{37096E32-E58E-417D-9003-BE80BE98049C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,10 @@ Global
 		{A7AEE40E-3B13-4DF1-841A-1FDAFF2E68C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7AEE40E-3B13-4DF1-841A-1FDAFF2E68C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7AEE40E-3B13-4DF1-841A-1FDAFF2E68C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37096E32-E58E-417D-9003-BE80BE98049C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37096E32-E58E-417D-9003-BE80BE98049C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37096E32-E58E-417D-9003-BE80BE98049C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37096E32-E58E-417D-9003-BE80BE98049C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
