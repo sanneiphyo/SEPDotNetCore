@@ -43,6 +43,26 @@ namespace SEPDotNetCore.ConsoleApp3
                 BlogAuthor = "test",
                 BlogContent = "test",
             });
+
+            //put
+            var newItem = await blogApi.PutBlog(2 ,new BlogModel
+            {
+                BlogTitle = "test",
+                BlogAuthor = "test",
+                BlogContent = "test",
+            });
+
+
+            //patch
+            var newItem3 = await blogApi.PatchBlog(2, new BlogModel
+            {
+                BlogTitle = "test",
+                BlogAuthor = "test",
+                BlogContent = "test",
+            });
+            //delete
+
+            var newItem4 = await blogApi.DeleteBlog(1);
         }
     }
 }

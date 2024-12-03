@@ -17,6 +17,16 @@ namespace SEPDotNetCore.ConsoleApp3
 
         [Post("/api/Blogs")]
         Task<List<BlogModel>> CreateBlog(BlogModel blog);
+
+        [Put("/api/Blogs/{id}")]
+        Task<List<BlogModel>> PutBlog(int id,BlogModel blog);
+
+        [Patch("/api/Blogs/{id}")]
+        Task<List<BlogModel>> PatchBlog(int id ,BlogModel blog);
+
+
+        [Delete("/api/Blogs/{id}")]
+        Task<List<BlogModel>> DeleteBlog(int id);
     }
 
     public class BlogModel
