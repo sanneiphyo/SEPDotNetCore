@@ -10,10 +10,12 @@ public static class BlogServiceEndpoint
     //    return i.ToString();
     //}
 
+
+    //Ctrl + R + I  
     public static void UseBlogServiceEndpoint(this IEndpointRouteBuilder app)
 
     {
-        app.MapGet("/blogs", ([FromServices] BlogService service) =>
+        app.MapGet("/blogs", ([FromServices] IBlogService service) =>
         {
             var lst = service.GetBlogs();
             return Results.Ok(lst);

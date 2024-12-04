@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace SEPDotNetCore.Domain.Features.Blog
 {
-    //Business logic + Data Access
-    public class BlogService : IBlogService
+    public class BlogService2 : IBlogService
     {
         private readonly AppDbContext _db;
 
-        public BlogService(AppDbContext db)
+        public BlogService2(AppDbContext db)
         {
             _db = db;
         }
@@ -40,7 +39,7 @@ namespace SEPDotNetCore.Domain.Features.Blog
             return blog;
         }
 
-        public TblBlog UpdateBlog(int id, TblBlog blog)
+        public TblBlog UpdateBlog(int id , TblBlog blog)
         {
             var item = _db.TblBlogs
         .AsNoTracking()
@@ -60,7 +59,7 @@ namespace SEPDotNetCore.Domain.Features.Blog
             return item;
         }
 
-        public TblBlog PatchBlog(int id, TblBlog blog)
+        public TblBlog PatchBlog(int id , TblBlog blog)
         {
             var item = _db.TblBlogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
 
@@ -89,11 +88,11 @@ namespace SEPDotNetCore.Domain.Features.Blog
             }
 
             _db.Entry(item).State = EntityState.Deleted;
-
+          
             int result = _db.SaveChanges();
             return result > 0;
         }
 
-
+       
     }
 }
