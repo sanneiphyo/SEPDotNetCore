@@ -12,14 +12,17 @@ namespace SEPDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogAdoDotNetController2 : ControllerBase
     {
-        private readonly string _connectionString = "Data Source=.;Initial Catalog=SEPDotNetCore;User ID=sa;Password=sasa@123;TrustServerCertificate=True";
+        private readonly string _connectionString;
         private readonly AdoDotNetService _adoDotNetService;
 
-        public BlogAdoDotNetController2()
+        public BlogAdoDotNetController2(IConfiguration configuration)
         {
+            _connectionString = configuration.GetConnectionString("DbConnection")!;
             _adoDotNetService = new AdoDotNetService(_connectionString);
-        } 
+        }
 
+
+     
         [HttpGet]
         public IActionResult GetBlogs()
         {

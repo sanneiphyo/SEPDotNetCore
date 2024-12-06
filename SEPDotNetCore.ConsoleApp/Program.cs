@@ -1,10 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using Microsoft.Extensions.DependencyInjection;
 using SEPDotNetCore.ConsoleApp;
 using System.Data;
 using System.Data.SqlClient;
 
 
-Console.WriteLine("Hello, World!");
+//Console.WriteLine("Hello, World!");
 //Console.ReadKey();
 
 //md => markdown
@@ -43,6 +44,13 @@ Console.WriteLine("Hello, World!");
 //EfCoreExample efCore = new EfCoreExample();
 //efCore.Create();
 //efCore.Read();
+
+
+var services = new ServiceCollection()
+    .AddSingleton<AdoDotNetExample>()
+    .BuildServiceProvider();
+var adoDotNetExample = services.GetRequiredService<AdoDotNetExample>();
+adoDotNetExample.Read();
 
 Console.ReadKey();
 

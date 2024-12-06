@@ -12,8 +12,13 @@ namespace SEPDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogDapperController : ControllerBase
     {
-        private readonly string _connectionString = "Data Source =.;Initial Catalog=SEPDotNetCore;User ID =sa;Password=sasa@123;TrustServerCertificate= True";
-        
+        private readonly string _connectionString ;
+
+        public BlogDapperController(IConfiguration configuration)
+        {
+            _connectionString = configuration.GetConnectionString("DbConnection")!;
+        }
+
         [HttpGet]
         public IActionResult GetBlogs()
         {

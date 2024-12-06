@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace SEPDotNetCore.ConsoleApp
 {
 
-    public class AdoDotNet
+    public class AdoDotNetExample
 
     {
         private readonly string _connectionString = "Data Source =.;Initial Catalog=SEPDotNetCore;User ID =sa;Password=sasa@123";

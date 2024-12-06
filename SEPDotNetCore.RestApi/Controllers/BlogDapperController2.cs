@@ -13,13 +13,15 @@ namespace SEPDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogDapperController2 : ControllerBase
     {
-        private readonly string _connectionString = "Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123;TrustServerCertificate=True;";
+        private readonly string _connectionString ;
         private readonly DapperService _dapperService;
 
-        public BlogDapperController2()
+        public BlogDapperController2(IConfiguration configuration)
         {
+            _connectionString = configuration.GetConnectionString("DbConnection")!;
             _dapperService = new DapperService(_connectionString);
         }
+
         [HttpGet]
         public IActionResult GetBlogs()
         {        
