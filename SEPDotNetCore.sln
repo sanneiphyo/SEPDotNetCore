@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.ConsoleApp3",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.MinimalApi", "SEPDotNetCore.MinimalApi\SEPDotNetCore.MinimalApi.csproj", "{37096E32-E58E-417D-9003-BE80BE98049C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.RestApi2", "SEPDotNetCore.RestApi2\SEPDotNetCore.RestApi2.csproj", "{7E693D77-5777-4CA1-A9D9-A58D4A7585B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,10 @@ Global
 		{37096E32-E58E-417D-9003-BE80BE98049C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37096E32-E58E-417D-9003-BE80BE98049C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37096E32-E58E-417D-9003-BE80BE98049C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E693D77-5777-4CA1-A9D9-A58D4A7585B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E693D77-5777-4CA1-A9D9-A58D4A7585B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E693D77-5777-4CA1-A9D9-A58D4A7585B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E693D77-5777-4CA1-A9D9-A58D4A7585B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
