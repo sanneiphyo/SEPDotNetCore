@@ -1,5 +1,4 @@
 ﻿
-using Microsoft.Extensions.Configuration;
 using SEPDotNetCore.Shared;
 using System;
 using System.Collections.Generic;
@@ -13,20 +12,13 @@ namespace SEPDotNetCore.ConsoleApp
 {
     internal class AdoDotNetExample2
     {
-        private readonly string _connectionString ;
+        private readonly string _connectionString = "Data Source=.;Initial Catalog=DotNetTrainingBatch5;User ID=sa;Password=sasa@123,TrustServerCertificate = True;";
         private readonly AdoDotNetService _adoDotNetService;
 
-
-        public AdoDotNetExample2(IConfiguration configuration)
+        public AdoDotNetExample2()
         {
-            _connectionString = configuration.GetConnectionString("DbConnection")!;
+            _adoDotNetService = new AdoDotNetService(_connectionString);
         }
-
-
-        //public AdoDotNetExample2()
-        //{
-        //    _adoDotNetService = new AdoDotNetService(_connectionString);
-        //}
 
         public void Read()
         {

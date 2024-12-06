@@ -13,7 +13,7 @@ namespace SEPDotNetCore.ConsoleApp
     internal class DapperExample
     {
 
-        private readonly string _connectionString = "Data Source =.;Initial Catalog=SEPDotNetCore;User ID =sa;Password=sasa@123";
+        private readonly string _connectionString = "Data Source =.;Initial Catalog=SEPDotNetCore;User ID =sa;Password=sasa@123 , TrustServerCertificate=True";
 
         public void Read()
         {

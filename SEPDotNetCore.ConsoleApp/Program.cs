@@ -46,11 +46,22 @@ using System.Data.SqlClient;
 //efCore.Read();
 
 
+//var services = new ServiceCollection()
+//    .AddSingleton<AdoDotNetExample>()
+//    .BuildServiceProvider();
+
+//var adoDotNetExample = services.GetRequiredService<AdoDotNetExample>();
+//adoDotNetExample.Read();
+
+
+
 var services = new ServiceCollection()
-    .AddSingleton<AdoDotNetExample>()
+    .AddSingleton<AdoDotNetExample2>()
     .BuildServiceProvider();
-var adoDotNetExample = services.GetRequiredService<AdoDotNetExample>();
+
+var adoDotNetExample = services.GetRequiredService<AdoDotNetExample2>();
 adoDotNetExample.Read();
+
 
 Console.ReadKey();
 
