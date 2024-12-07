@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Refit;
 using RestSharp;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,10 @@ builder.Services.AddSingleton(n => new HttpClient()
 });
 
 builder.Services.AddSingleton(n => new RestClient(builder.Configuration.GetSection("ApiDomainUrl").Value!));
+
+builder.Services
+    .AddRefitClient<ISnakeApi>()
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri(builder.Configuration.GetSection("ApiDomainUrl").Value!));
 
 var app = builder.Build();
 
@@ -46,6 +51,9 @@ app.UseHttpsRedirection();
 //.WithName("GetWeatherForecast")
 //.WithOpenApi();
 
+
+//Method Injection
+
 app.MapGet("/birds", async ([FromServices] HttpClient httpClient) =>{
    var response = await  httpClient.GetAsync("birds");
     return response.Content.ReadAsStringAsync();
@@ -59,7 +67,34 @@ app.MapGet("/pick-a-pile", async ([FromServices] RestClient restClient) => {
     return response.Content;
 });
 
+
+
+app.MapGet("/snakes", async ([FromServices] ISnakeApi snakeApi) => {
+
+    var response = await snakeApi.GetSnakes();
+    return response;
+});
+
 app.Run();
+
+public interface ISnakeApi
+{
+    [Get("/snakes")]
+    Task<List<SnakeModel>> GetSnakes();
+}
+
+
+
+public class SnakeModel
+{
+    public int Id { get; set; }
+    public string ImageUrl { get; set; }
+    public string MMName { get; set; }
+    public string EngName { get; set; }
+    public string Detail { get; set; }
+    public string IsPoison { get; set; }
+    public string IsDanger { get; set; }
+}
 
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
