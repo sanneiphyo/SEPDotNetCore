@@ -81,6 +81,9 @@ dotnet ef dbcontext scaffold "Server=.;Database=SEPDotNetCore;User Id=sa;Passwor
 dotnet ef dbcontext scaffold "Server=.;Database=DigitalWallet;User Id=sa;Password=sasa@123;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o AppDbContextModels -c AppDbContext -f
 
 
+dotnet ef dbcontext scaffold "Server=.;Database=SankeLadderGame;User Id=sa;Password=sasa@123;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o AppDbContextModels -c AppDbContext -f
+
+
 ------------------------------------------------------------------------------------------------
 
 Visual Studio 2022 installation

@@ -1,7 +1,6 @@
-﻿namespace SEPDotNetCore.Database.SnakeLadder
-{
-    public class Class1
-    {
+﻿namespace SEPDotNetCore.SnakeLadder.Database;
 
-    }
+public class Class1
+{
+
 }
