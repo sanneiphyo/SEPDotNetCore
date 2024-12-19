@@ -7,7 +7,7 @@ using SEPDotNetCore.SnakeLadder.Database.AppDbContextModels;
 
 namespace SEPDotNetCore.SankeLadder.Domain.Models
 {
-    public class GameResponseModel
+    public class GameRequestModel
     {
         public int GameId { get; set; }
 
