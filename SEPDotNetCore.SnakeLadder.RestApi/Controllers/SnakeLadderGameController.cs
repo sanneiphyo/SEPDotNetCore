@@ -30,5 +30,12 @@ namespace SEPDotNetCore.SnakeLadder.RestApi.Controllers
             var GameCode =await _service.CreateGameCodeAsync();
             return new JsonResult(GameCode);
         }
+
+        [HttpPost("play-game")]
+        public async Task<IActionResult> StartGame(int id,string GameCode)
+        {
+            var PlayGame = await _service.StartGameAsync(id ,GameCode);
+            return Ok(PlayGame);
+        }
     }
 }
