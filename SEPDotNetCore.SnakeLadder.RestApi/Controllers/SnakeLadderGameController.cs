@@ -37,5 +37,12 @@ namespace SEPDotNetCore.SnakeLadder.RestApi.Controllers
             var PlayGame = await _service.StartGameAsync(id ,GameCode);
             return Ok(PlayGame);
         }
+
+        [HttpGet("check-winner")]
+        public async Task<IActionResult> CheckWinner(string gameCode)
+        {
+            var CheckWinner = await _service.CheckWinnerAsync(gameCode);
+            return new JsonResult(CheckWinner);
+        }
     }
 }

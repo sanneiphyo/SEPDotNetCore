@@ -183,5 +183,48 @@ namespace SEPDotNetCore.SankeLadder.Domain.Features
             return model;
         }
 
+        public async Task<Result<GameResponseModel>> CheckWinnerAsync(string gameCode)
+        {
+            Result<GameResponseModel> model = new Result<GameResponseModel>();
+
+            var WinnerGameCode = await _db.TblGames
+               .AsNoTracking()
+               .FirstOrDefaultAsync(g => g.GameCode == gameCode);
+
+            if (string.IsNullOrEmpty(gameCode))
+            {
+                model = Result<GameResponseModel>.ValidationError(null, "Invalid Game Code");
+                return model;
+            }
+           
+
+            if (WinnerGameCode is null)
+            {
+                model = Result<GameResponseModel>.SystemError(null, "Game not found");
+                goto Result;
+            }
+
+           
+            if (WinnerGameCode.WinnerPlayerId is null)
+            {
+                model = Result<GameResponseModel>.Success(null, "No winner yet!");
+                goto Result;
+            }
+
+           
+            var response = new GameResponseModel
+            {
+                GameCode = WinnerGameCode.GameCode,
+              
+            };
+
+            model = Result<GameResponseModel>.Success(response, "Winner found");
+            return model;
+
+            Result:
+            return model;
+        }
+
+
     }
 };
