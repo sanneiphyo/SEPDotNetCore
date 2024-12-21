@@ -15,7 +15,7 @@ namespace SEPDotNetCore.SankeLadder.Domain.Models
 
         public int CurrentPosition { get; set; }
 
-        public virtual TblBoard CurrentPositionNavigation { get; set; } = null!;
+        //public virtual TblBoard CurrentPositionNavigation { get; set; } = null!;
 
         public virtual ICollection<TblGamePlay> TblGamePlays { get; set; } = new List<TblGamePlay>();
 
@@ -34,7 +34,7 @@ namespace SEPDotNetCore.SankeLadder.Domain.Models
 
         public int NewPosition { get; set; }
 
-        public virtual TblBoard NewPositionNavigation { get; set; } = null!;
+        //public virtual TblBoard NewPositionNavigation { get; set; } = null!;
 
         public virtual TblPlayer Player { get; set; } = null!;
     }

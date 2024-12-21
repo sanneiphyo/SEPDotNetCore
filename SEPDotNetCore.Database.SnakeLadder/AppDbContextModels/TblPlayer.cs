@@ -11,7 +11,6 @@ public partial class TblPlayer
 
     public int CurrentPosition { get; set; }
 
-    public virtual TblBoard CurrentPositionNavigation { get; set; } = null!;
 
     public virtual ICollection<TblGamePlay> TblGamePlays { get; set; } = new List<TblGamePlay>();
 

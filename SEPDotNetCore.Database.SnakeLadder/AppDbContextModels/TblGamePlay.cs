@@ -15,7 +15,7 @@ public partial class TblGamePlay
 
     public int NewPosition { get; set; }
 
-    public virtual TblBoard NewPositionNavigation { get; set; } = null!;
+ 
 
     public virtual TblPlayer Player { get; set; } = null!;
 }

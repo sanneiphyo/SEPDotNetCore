@@ -65,11 +65,11 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.NewPositionNavigation).WithMany(p => p.TblGamePlays)
-                .HasPrincipalKey(p => p.BoardNumber)
-                .HasForeignKey(d => d.NewPosition)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Tbl_GameP__NewPo__5070F446");
+            //entity.HasOne(d => d.NewPositionNavigation).WithMany(p => p.TblGamePlays)
+            //    .HasPrincipalKey(p => p.BoardNumber)
+            //    .HasForeignKey(d => d.NewPosition)
+            //    .OnDelete(DeleteBehavior.ClientSetNull)
+            //    .HasConstraintName("FK__Tbl_GameP__NewPo__5070F446");
 
             entity.HasOne(d => d.Player).WithMany(p => p.TblGamePlays)
                 .HasForeignKey(d => d.PlayerId)
@@ -88,11 +88,11 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(100)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.CurrentPositionNavigation).WithMany(p => p.TblPlayers)
-                .HasPrincipalKey(p => p.BoardNumber)
-                .HasForeignKey(d => d.CurrentPosition)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Tbl_Playe__Curre__48CFD27E");
+            //entity.HasOne(d => d.CurrentPositionNavigation).WithMany(p => p.TblPlayers)
+            //    .HasPrincipalKey(p => p.BoardNumber)
+            //    .HasForeignKey(d => d.CurrentPosition)
+            //    .OnDelete(DeleteBehavior.ClientSetNull)
+            //    .HasConstraintName("FK__Tbl_Playe__Curre__48CFD27E");
         });
 
         OnModelCreatingPartial(modelBuilder);
