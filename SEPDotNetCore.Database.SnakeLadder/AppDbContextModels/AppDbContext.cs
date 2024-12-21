@@ -13,7 +13,7 @@ public partial class AppDbContext : DbContext
     {
     }
 
-    public virtual DbSet<TblBoard> TblBoards { get; set; }
+    //public virtual DbSet<TblBoard> TblBoards { get; set; }
 
     public virtual DbSet<TblGame> TblGames { get; set; }
 
@@ -27,16 +27,16 @@ public partial class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<TblBoard>(entity =>
-        {
-            entity.HasKey(e => e.BoardId).HasName("PK__Tbl_Boar__F9646BD2C1A0DDDF");
+        //modelBuilder.Entity<TblBoard>(entity =>
+        //{
+        //    entity.HasKey(e => e.BoardId).HasName("PK__Tbl_Boar__F9646BD2C1A0DDDF");
 
-            entity.ToTable("Tbl_Board");
+        //    entity.ToTable("Tbl_Board");
 
-            entity.HasIndex(e => e.BoardNumber, "UQ__Tbl_Boar__EA937B3661D168F3").IsUnique();
+        //    entity.HasIndex(e => e.BoardNumber, "UQ__Tbl_Boar__EA937B3661D168F3").IsUnique();
 
-            entity.Property(e => e.BoardId).HasColumnName("BoardID");
-        });
+        //    entity.Property(e => e.BoardId).HasColumnName("BoardID");
+        //});
 
         modelBuilder.Entity<TblGame>(entity =>
         {
