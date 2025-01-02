@@ -1,4 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using SEPDotNetCore.Database.Models;
+using SEPDotNetCore.Domain.Features.Blog;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>(opt =>
+{
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+builder.Services.AddScoped<IBlogService, BlogService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

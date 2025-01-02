@@ -1,8 +1,21 @@
-﻿@{
+﻿@model HomeResponseModel
+
+@{
     ViewData["Title"] = "Home Page";
+
+	string message = "Hello from razor page"; 
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">@message</h1>
+    <h1 class="display-4">@ViewBag.Message</h1>
+    <h1 class="display-4">@Model.Message</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+
+@section scripts {
+	<script>
+		console.log("Hello from Index.cshtml"); 
+    </script>
+}

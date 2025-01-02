@@ -15,7 +15,12 @@ namespace SEPdotNetCore.MvcApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            ViewBag.Message = "Hello from ViewBag";
+
+            HomeResponseModel model = new HomeResponseModel();
+            model.Message = "Hello from Model";
+
+            return View(model);
         }
 
         public IActionResult Privacy()

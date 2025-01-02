@@ -180,3 +180,14 @@ Forget Password
 Reset Password
 
 First Time Login
+
+------------------------------------------------------------
+
+MVC
+
+Model View Controller
+
+
+https://localhost:5001/swagger/index.html
+
+HomeController => Model => View (model) => Page (HTML)
