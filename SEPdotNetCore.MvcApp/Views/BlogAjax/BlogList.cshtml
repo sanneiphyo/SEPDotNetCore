@@ -1,0 +1,36 @@
+﻿
+<a href="/Blog/Create" class="btn btn-outline-success">Create New Blog</a>
+
+<table class="table table-responsive">
+	<thead>
+		<tr>
+			<th></th>
+			<th>No.</th>
+			<th>Blog Title</th>
+			<th>Blog Author</th>
+			<th>Blog Content</th>
+		</tr>
+	</thead>
+	<tbody id="tblDataTable">
+	
+		
+	</tbody>
+</table>
+
+@section scripts{
+	<script>
+		$(document).ready(function () {
+			loadData();
+			});
+
+		function loadData() {
+			$.ajax({
+				url: '/BlogAjax/List',
+				type: 'GET',
+				success: function (response) {
+					console.log(response);
+				}
+			});
+		};
+	</script>
+}
