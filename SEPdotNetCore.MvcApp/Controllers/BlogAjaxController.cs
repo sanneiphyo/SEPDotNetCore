@@ -35,12 +35,13 @@ namespace SEPdotNetCore.MvcApp.Controllers
             return View("BlogCreate");      
         }
 
-       
+
 
         [HttpPost]
         [ActionName("Save")]
         public IActionResult BlogSave(BlogRequestModel requestModel)
         {
+            MessageModel model;
             try
             {
                 _blogService.CreateBlog(new TblBlog
@@ -50,32 +51,55 @@ namespace SEPdotNetCore.MvcApp.Controllers
                     BlogTitle = requestModel.Title
                 });
 
-                //ViewBag.IsSuccess = true;
-                //ViewBag.Message = "Blog Created Successfully";
-
                 TempData["IsSuccess"] = true;
                 TempData["Message"] = "Blog Created Successfully";
+
+                model = new MessageModel(true, "Blog Created Successfully");
             }
             catch (Exception ex)
             {
-                //ViewBag.IsSuccess = false;
-                //ViewBag.Message = ex.ToString();
-
                 TempData["IsSuccess"] = false;
                 TempData["Message"] = ex.ToString();
+
+                model = new MessageModel(false, ex.ToString());
             }
 
-            return RedirectToAction("Index");
+            return Json(model);
+        }
+        public class MessageModel
+        {
+            public MessageModel()
+            {
+            }
+            public MessageModel(bool isSuccess, string message)
+            {
+                IsSuccess = isSuccess;
+                Message = message;
+            }
 
-            //var lst = _blogService.GetBlogs();
-            //return View("Index", lst);
+            public bool IsSuccess { get; set; }
+            public string Message { get; set; }
         }
 
+        [HttpPost]
         [ActionName("Delete")]
-        public IActionResult BlogDelete(int id)
+        public IActionResult BlogDelete(BlogRequestModel requestModel)
         {
-           _blogService.DeleteBlog(id);
-            return RedirectToAction("Index");
+            MessageModel model;
+            try
+            {
+                _blogService.DeleteBlog(requestModel.Id);
+                model = new MessageModel(true, "Blog Deleted Successfully");
+            }
+            catch (Exception ex)
+            {
+                TempData["IsSuccess"] = false;
+                TempData["Message"] = ex.ToString();
+
+                model = new MessageModel(false, ex.ToString());
+            }
+
+            return Json(model);
         }
 
         [ActionName("Edit")]
@@ -96,11 +120,12 @@ namespace SEPdotNetCore.MvcApp.Controllers
 
         [HttpPost]
         [ActionName("Update")]
-        public IActionResult BlogUpdate(int id ,BlogRequestModel requestModel)
+        public IActionResult BlogUpdate(int id, BlogRequestModel requestModel)
         {
+            MessageModel model;
             try
             {
-                _blogService.UpdateBlog( id,new TblBlog
+                _blogService.UpdateBlog(id, new TblBlog
                 {
                     BlogAuthor = requestModel.Author,
                     BlogContent = requestModel.Content,
@@ -109,16 +134,19 @@ namespace SEPdotNetCore.MvcApp.Controllers
 
                 TempData["IsSuccess"] = true;
                 TempData["Message"] = "Blog Updated Successfully";
+
+                model = new MessageModel(true, "Blog Updated Successfully");
             }
             catch (Exception ex)
             {
-              
                 TempData["IsSuccess"] = false;
                 TempData["Message"] = ex.ToString();
+
+                model = new MessageModel(false, ex.ToString());
             }
 
-            return RedirectToAction("Index");
-         }
-
+            return Json(model);
+        }
     }
 }
+
