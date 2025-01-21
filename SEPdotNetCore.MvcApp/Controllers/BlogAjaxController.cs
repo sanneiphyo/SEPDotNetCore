@@ -42,6 +42,7 @@ namespace SEPdotNetCore.MvcApp.Controllers
         public IActionResult BlogSave(BlogRequestModel requestModel)
         {
             MessageModel model;
+
             try
             {
                 _blogService.CreateBlog(new TblBlog
