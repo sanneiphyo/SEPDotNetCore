@@ -1,0 +1,48 @@
+﻿@model BoxWhiskerChartModel
+@{
+    var labels = Model.Labels;
+    var dataPoints = Model.DataPoints;
+}
+
+
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+@section scripts{
+	 <script>
+        window.onload = function () {
+          
+            const labels = @Html.Raw(Json.Serialize(labels));
+            const dataPoints = @Html.Raw(Json.Serialize(dataPoints));
+
+            
+            const chartData = labels.map((label, index) => ({
+                label: label,
+                y: dataPoints[index]
+            }));
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                    text: "Annual Salary Range - USA"
+                },
+                axisY: {
+                    title: "Annual Salary (in USD)",
+                    prefix: "$",
+                    interval: 40000
+                },
+                data: [{
+                    type: "boxAndWhisker",
+                    upperBoxColor: "#FFC28D",
+                    lowerBoxColor: "#9ECCB8",
+                    color: "black",
+                    yValueFormatString: "$#,##0",
+                    dataPoints: chartData
+                }]
+            });
+            chart.render();
+        }
+    </script>
+
+}
+
+   

@@ -1,0 +1,58 @@
+﻿@model DonutChartModel
+@{
+    var labels = Model.Labels;
+    var series = Model.Series;
+}
+
+
+   <div id="chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+@section scripts {
+      
+   <script>
+          
+            const labels = @Html.Raw(Json.Serialize(labels));
+            const series = @Html.Raw(Json.Serialize(series));
+
+          
+            const chartData = labels.map((label, index) => ({
+                name: label,
+                y: series[index]
+            }));
+
+           
+            Highcharts.chart('chart', {
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: true,
+                        alpha: 45 
+                    }
+                },
+                title: {
+                    text: 'Beijing 2022 Gold Medals by Country'
+                },
+                subtitle: {
+                    text: '3D Donut in Highcharts'
+                },
+                plotOptions: {
+                    pie: {
+                        innerSize: 100, 
+                        depth: 45 
+                    }
+                },
+                series: [{
+                    name: 'Medals',
+                    data: chartData
+                }],
+                tooltip: {
+                    pointFormat: '{point.name}: <b>{point.y} gold medals</b>'
+                },
+                accessibility: {
+                    point: {
+                        valueSuffix: 'gold medals'
+                    }
+                }
+            });
+</script>
+}

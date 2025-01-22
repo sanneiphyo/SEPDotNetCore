@@ -1,0 +1,61 @@
+﻿@model LineChartModel
+@{
+    var dates = Model.Dates;
+    var prices = Model.Prices;
+    var indexLabels = Model.IndexLabels;
+    var markerTypes = Model.MarkerTypes;
+    var markerColors = Model.MarkerColors;
+}
+ 
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+    @section scripts {
+       
+        <script>
+            window.onload = function () {
+                 
+                const dates = @Html.Raw(Json.Serialize(dates));
+                const prices = @Html.Raw(Json.Serialize(prices));
+                const indexLabels = @Html.Raw(Json.Serialize(indexLabels));
+                const markerTypes = @Html.Raw(Json.Serialize(markerTypes));
+                const markerColors = @Html.Raw(Json.Serialize(markerColors));
+
+               
+                const dataPoints = dates.map((date, index) => ({
+                    x: new Date(date),
+                    y: prices[index],
+                    indexLabel: indexLabels[index],
+                    markerType: markerTypes[index],
+                    markerColor: markerColors[index]
+                }));
+
+                
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    theme: "light2",  
+                    animationEnabled: true,
+                    title: {
+                        text: "Share Value - 2016"
+                    },
+                    axisX: {
+                        interval: 1,
+                        intervalType: "month",
+                        valueFormatString: "MMM"
+                    },
+                    axisY: {
+                        title: "Price (in USD)",
+                        includeZero: true,
+                        valueFormatString: "$#0"
+                    },
+                    data: [{
+                        type: "line",
+                        markerSize: 12,
+                        xValueFormatString: "MMM, YYYY",
+                        yValueFormatString: "$###.#",
+                        dataPoints: dataPoints
+                    }]
+                });
+                chart.render();
+            }
+        </script>
+    }
+ 

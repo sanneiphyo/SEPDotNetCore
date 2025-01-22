@@ -1,16 +1,26 @@
-﻿<div id="chart"></div>
+﻿@model ApexChartPieChartModel
+@{
+	int[] _series = Model.Series;
+	string[] _labels = Model.Labels;
+}
+
+
+<div id="chart"></div>
 
 @section scripts{
 
     <script>
 
+		const _series = @Html.Raw(JsonConvert.SerializeObject(_series));
+		const _labels = @Html.Raw(JsonConvert.SerializeObject(_labels));
+
         var options = {
-              series: [44, 55, 13, 43, 22],
+              series: _series,
               chart: {
               width: 380,
               type: 'pie',
             },
-            labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+			labels:_labels,
             responsive: [{
               breakpoint: 480,
               options: {

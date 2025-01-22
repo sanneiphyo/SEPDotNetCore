@@ -1,0 +1,52 @@
+﻿@model BorderChartModel
+@{
+ 
+    var labels = Model.Labels;
+    var dataset1 = Model.Dataset1;
+    var dataset2 = Model.Dataset2;
+}
+
+<div style="width: 75%; margin: auto;">
+    <canvas id="borderChart"></canvas>
+</div>
+
+@section Scripts {
+    <script>
+       
+        const labels = @Html.Raw(Json.Serialize(labels));
+        const dataset1 = @Html.Raw(Json.Serialize(dataset1));
+        const dataset2 = @Html.Raw(Json.Serialize(dataset2));
+
+        
+        const ctx = document.getElementById('borderChart').getContext('2d');
+        const borderChart = new Chart(ctx, {
+            type: 'bar', 
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Dataset 1',
+                        data: dataset1,
+                        borderColor: 'rgba(255, 99, 132, 1)', 
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)', 
+                        borderWidth: 3 
+                    },
+                    {
+                        label: 'Dataset 2',
+                        data: dataset2,
+                        borderColor: 'rgba(54, 162, 235, 1)', 
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)', 
+                        borderWidth: 3 
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+}

@@ -1,0 +1,101 @@
+﻿@model ColumnChartModel
+@{
+    var brands = Model.Brands;
+    var sales = Model.Sales;
+}
+
+
+    <div id="chart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+ 
+    <div id="sliders" style="margin-top: 20px;">
+        <label for="alpha">Alpha Angle:</label>
+        <input id="alpha" type="range" min="0" max="45" value="15" />
+        <span id="alpha-value">15</span><br />
+
+        <label for="beta">Beta Angle:</label>
+        <input id="beta" type="range" min="0" max="45" value="15" />
+        <span id="beta-value">15</span><br />
+
+        <label for="depth">Depth:</label>
+        <input id="depth" type="range" min="20" max="100" value="50" />
+        <span id="depth-value">50</span><br />
+    </div>
+
+    @section scripts {
+      
+
+        <script>
+            const brands = @Html.Raw(Json.Serialize(brands));
+            const sales = @Html.Raw(Json.Serialize(sales));
+
+
+            const chartData = brands.map((brand, index) => ({
+                name: brand,
+                y: sales[index]
+            }));
+
+           
+            const chart = new Highcharts.Chart({
+                chart: {
+                    renderTo: 'chart',
+                    type: 'column',
+                    options3d: {
+                        enabled: true,
+                        alpha: 15,
+                        beta: 15,
+                        depth: 50,
+                        viewDistance: 25
+                    }
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        enabled: false
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<b>{point.key}</b><br>',
+                    pointFormat: 'Cars sold: {point.y}'
+                },
+                title: {
+                    text: 'Sold passenger cars in Norway by brand, May 2024'
+                },
+                subtitle: {
+                    text: 'Source: ' +
+                        '<a href="https://ofv.no/registreringsstatistikk"' +
+                        'target="_blank">OFV</a>'
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    column: {
+                        depth: 25
+                    }
+                },
+                series: [{
+                    data: chartData,
+                    colorByPoint: true
+                }]
+            });
+
+            function showValues() {
+                document.getElementById('alpha-value').innerHTML = chart.options.chart.options3d.alpha;
+                document.getElementById('beta-value').innerHTML = chart.options.chart.options3d.beta;
+                document.getElementById('depth-value').innerHTML = chart.options.chart.options3d.depth;
+            }
+
+            document.querySelectorAll('#sliders input').forEach(input => {
+                input.addEventListener('input', e => {
+                    chart.options.chart.options3d[e.target.id] = parseFloat(e.target.value);
+                    showValues();
+                    chart.redraw(false);
+                });
+            });
+
+            showValues();
+        </script>
+    }

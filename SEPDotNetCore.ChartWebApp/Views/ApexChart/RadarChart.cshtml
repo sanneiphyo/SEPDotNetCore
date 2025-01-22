@@ -1,0 +1,57 @@
+﻿@model RadarChartModel
+@{
+    var labels = Model.Labels;
+    var dataset1 = Model.Dataset1;
+    var dataset2 = Model.Dataset2;
+}
+
+
+    <div style="width: 75%; margin: auto;">
+        <canvas id="radarChart"></canvas>
+    </div>
+
+@section scripts {
+    <script>
+
+        const labels = @Html.Raw(Json.Serialize(labels));
+        const dataset1 = @Html.Raw(Json.Serialize(dataset1));
+        const dataset2 = @Html.Raw(Json.Serialize(dataset2));
+
+        const ctx = document.getElementById('radarChart').getContext('2d');
+        const radarChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Dataset 1',
+                        data: dataset1,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Dataset 2',
+                        data: dataset2,
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }
+            }
+        });
+    </script>
+}
+
+ 
