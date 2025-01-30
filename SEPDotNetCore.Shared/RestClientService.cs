@@ -12,9 +12,9 @@ namespace SEPDotNetCore.Shared
     {
         private readonly RestClient _restClient;
 
-        public RestClientService(RestClient restClient)
+        public RestClientService(string domainUrl)
         {
-            _restClient = restClient;
+            _restClient = new RestClient(domainUrl);
         }
 
         public async Task<T> SendAsync<T>(string url, EnumHttpMethod method, object? data = null)

@@ -52,6 +52,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPdotNetCore.MvcApp", "SEP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.ChartWebApp", "SEPDotNetCore.ChartWebApp\SEPDotNetCore.ChartWebApp.csproj", "{F256479B-6789-4A7B-91B4-1EEE9E2249F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.Project1.MvcApp", "SEPDotNetCore.Project1.MvcApp\SEPDotNetCore.Project1.MvcApp.csproj", "{29B85644-D903-4DE0-945B-C5F8869FAE5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SEPDotNetCore.Project1.Api", "SEPDotNetCore.Project1.Api\SEPDotNetCore.Project1.Api.csproj", "{E260BA05-EFD1-40E1-97FD-3595F572E1FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -146,6 +150,14 @@ Global
 		{F256479B-6789-4A7B-91B4-1EEE9E2249F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F256479B-6789-4A7B-91B4-1EEE9E2249F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F256479B-6789-4A7B-91B4-1EEE9E2249F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29B85644-D903-4DE0-945B-C5F8869FAE5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29B85644-D903-4DE0-945B-C5F8869FAE5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29B85644-D903-4DE0-945B-C5F8869FAE5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29B85644-D903-4DE0-945B-C5F8869FAE5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E260BA05-EFD1-40E1-97FD-3595F572E1FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E260BA05-EFD1-40E1-97FD-3595F572E1FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E260BA05-EFD1-40E1-97FD-3595F572E1FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E260BA05-EFD1-40E1-97FD-3595F572E1FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
